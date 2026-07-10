@@ -1,0 +1,92 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Zinrelo
+providerId: zinrelo
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Loyalty
+- Rewards
+- SaaS
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Zinrelo spend. Zinrelo is an enterprise SaaS loyalty platform
+  billed on a quote-based subscription rather than a metered pay-as-you-go API.
+  The dominant cost driver is the loyalty program subscription, which scales
+  with member volume and the feature set (holistic loyalty modules, analytics,
+  and strategy consultation), plus possible overage fees when member counts
+  exceed a plan allowance. The Loyalty API is included with a subscription and
+  is not separately metered per call. There is no vendor API-usage invoice line
+  to allocate the way a pure usage-based API would produce; cost allocation is
+  primarily about the subscription and member-tier band.
+notes: >-
+  Zinrelo is rebranding to TrueLoyal. Per-plan rates are quote-based and not
+  reconciled here; user reports mention overage fees of roughly 50 to 70 USD per
+  month above contract. Confirm subscription tier, member bands, and overage
+  terms with Zinrelo/TrueLoyal sales.
+sources:
+- https://www.trueloyal.com/pricing/
+- https://www.zinrelo.com
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Zinrelo
+serviceCategory: Marketing and Loyalty
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Zinrelo Loyalty Rewards Platform
+  ServiceCategory: Marketing and Loyalty
+  ProviderName: Zinrelo
+  PublisherName: Zinrelo
+  InvoiceIssuerName: Zinrelo
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: loyalty_members
+  description: Number of enrolled loyalty program members; the primary driver of subscription tier and overage.
+  unit: members
+  aggregation: max
+  dimensions:
+  - account
+  - program
+- name: subscription
+  description: Recurring loyalty platform subscription fee for the contracted tier.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - account
+- name: overage
+  description: Charges when member counts exceed the plan allowance.
+  unit: members
+  aggregation: sum
+  dimensions:
+  - account
+  - program
+principles:
+- name: Visibility
+  description: Track enrolled member counts against the plan allowance to anticipate overage charges.
+- name: Allocation
+  description: Map loyalty program subscription and overage to the marketing or retention cost center that owns the program.
+- name: Optimization
+  description: Prune inactive or unsubscribed members where terms allow, and right-size the plan member band to the active audience.
+- name: Accountability
+  description: Assign a program owner to review member growth, tier utilization, and overage against budget each billing cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,118 @@
+aid: zinrelo
+name: Zinrelo
+review:
+  question: Does Zinrelo expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-10'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: >
+    No AsyncAPI document was authored. Zinrelo's documented public surface (the
+    Loyalty API for members, points, transactions, rewards, and redemptions) is
+    request/response REST over HTTPS. Zinrelo does support outbound webhooks -
+    it POSTs event notifications to a configured endpoint and exposes a
+    GET /events/{id} endpoint to retrieve event details - but webhooks are
+    server-to-endpoint HTTP callbacks, not a server-push streaming transport
+    (WebSocket or SSE) on Zinrelo's own API, so there is no bidirectional or
+    streaming channel to model.
+findings:
+  summary: >
+    Zinrelo does not publish a documented public WebSocket API. Zinrelo is an
+    enterprise SaaS loyalty and rewards platform. Its public API is a REST
+    Loyalty API under https://api.zinrelo.com, authenticated with a partner-id
+    and an api-key sent as HTTP headers. The v1 surface is documented in the
+    Zinrelo API reference (zinrelo.github.io/slate) and v2 loyalty and
+    loyalty-storefront endpoints are documented in the Zinrelo help center
+    (help.zinrelo.com, now redirecting to help.trueloyal.com as Zinrelo
+    rebrands to TrueLoyal). All documented endpoints are request/response REST
+    over HTTPS. Zinrelo delivers asynchronous notifications via outbound
+    webhooks (HTTP callbacks with a GET /events/{id} lookup), not via a
+    WebSocket. No realtime, bidirectional, or streaming WebSocket (ws:// or
+    wss://) endpoint is documented on Zinrelo's own API as of the review date.
+  accessModel: >
+    The API reference documentation is public and self-serve to read, but API
+    access is account-gated. Every request requires a partner-id and api-key
+    provisioned to a Zinrelo account; there is no open, credit-card-free public
+    API key. Pricing is quote-based via sales, with a free trial and a Shopify
+    app tier free up to 500 loyalty members. In practice a working integration
+    requires being a Zinrelo customer.
+  endpointsModeled: >
+    Endpoint paths, HTTP methods, authentication headers, and query parameters
+    are drawn directly from Zinrelo's public documentation and are accurate.
+    Request and response body schemas in the OpenAPI are honestly modeled from
+    the public docs and examples, because Zinrelo does not publish a
+    machine-readable OpenAPI with full field-level schemas. Field names and
+    shapes should be verified against the live reference before production use.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.zinrelo.com
+      documented: true
+      note: >
+        Loyalty API for members, points, transactions, rewards, and
+        redemptions. v1 paths under /v1/loyalty and v2 paths under
+        /v2/loyalty and /v2/loyalty-storefront.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: >
+        Zinrelo POSTs event notifications to a configured HTTP endpoint and
+        exposes GET /events/{id} to fetch event details. Server-to-endpoint
+        HTTP callback, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: >
+        No WebSocket endpoint is documented anywhere in Zinrelo's API reference
+        or help center as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://api.zinrelo.com/v1/loyalty/users
+    - GET    https://api.zinrelo.com/v1/loyalty/users
+    - GET    https://api.zinrelo.com/v1/loyalty/users/{user_email}
+    - GET    https://api.zinrelo.com/v1/loyalty/users/{user_email}/transactions
+    - GET    https://api.zinrelo.com/v1/loyalty/users/{user_email}/eligible_activities
+    - GET    https://api.zinrelo.com/v1/loyalty/users/{user_email}/redemptions
+    - GET    https://api.zinrelo.com/v1/loyalty/users/{user_email}/next_tier
+    - PUT    https://api.zinrelo.com/v1/loyalty/users/{user_email}/block
+    - POST   https://api.zinrelo.com/v1/loyalty/users/deduct
+    - POST   https://api.zinrelo.com/v1/loyalty/update_user_email
+    - POST   https://api.zinrelo.com/v1/loyalty/unsubscribe_email
+    - GET    https://api.zinrelo.com/v1/loyalty/unsubscribed_users
+    - POST   https://api.zinrelo.com/v1/loyalty/award
+    - POST   https://api.zinrelo.com/v1/loyalty/purchase
+    - POST   https://api.zinrelo.com/v1/loyalty/redeem
+    - POST   https://api.zinrelo.com/v1/loyalty/transaction/return
+    - GET    https://api.zinrelo.com/v1/loyalty/transactions
+    - GET    https://api.zinrelo.com/v1/loyalty/redemptions
+    - GET    https://api.zinrelo.com/v1/loyalty/tiers
+    - GET    https://api.zinrelo.com/v1/events/{id}
+    - GET    https://api.zinrelo.com/v2/loyalty/rewards
+    - GET    https://api.zinrelo.com/v2/loyalty-storefront/transactions
+sources:
+  - url: https://zinrelo.github.io/slate/
+    type: APIReference
+    note: Classic v1 Loyalty API reference; partner-id and api-key headers; all REST. No WebSocket.
+  - url: https://help.zinrelo.com/reference/introduction
+    type: Documentation
+    note: API overview; REST, authenticated with partner id and api key. Redirects to help.trueloyal.com.
+  - url: https://help.zinrelo.com/reference/list-members-transaction-api
+    type: APIReference
+    note: GET /v2/loyalty-storefront/transactions with pagination and date/status filters.
+  - url: https://help.zinrelo.com/reference/list-all-rewards
+    type: APIReference
+    note: GET /v2/loyalty/rewards, sorted by last_modified_date by default.
+  - url: https://help.zinrelo.com/reference/perform-activity-api
+    type: Documentation
+    note: Perform Activity awards points to a member based on admin console configuration.
+  - url: https://www.trueloyal.com/pricing/
+    type: Pricing
+    note: Quote-based pricing via sales; free trial; Shopify app free up to 500 members.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: >
+    No WebSocket protocol surface exists, and Zinrelo's own public API is
+    request/response REST plus outbound HTTP webhooks. No AsyncAPI document was
+    created because there is no server-push streaming transport (WebSocket or
+    SSE) on Zinrelo's own API to model; the webhook callbacks are one-way HTTP
+    POSTs to a customer endpoint and carry their own out-of-scope delivery.

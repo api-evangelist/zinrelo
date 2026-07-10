@@ -1,0 +1,165 @@
+aid: zinrelo
+url: https://raw.githubusercontent.com/api-evangelist/zinrelo/refs/heads/main/apis.yml
+name: Zinrelo
+kind: company
+description: >-
+  Zinrelo is an enterprise SaaS loyalty and rewards platform that helps brands
+  run holistic loyalty programs spanning transactional, social, advocacy,
+  engagement, behavioral, and emotional loyalty across web, mobile, and in-store
+  channels. Its documented REST Loyalty API lets you enroll and manage members,
+  award and deduct points, record purchases and returns, list rewards, and
+  redeem points for rewards. Every request is authenticated with a partner-id
+  and an api-key sent as HTTP headers, both provisioned to a Zinrelo account.
+  The API reference is public, but obtaining API credentials requires a Zinrelo
+  account; pricing is quote-based via sales. Zinrelo is rebranding to TrueLoyal,
+  and some documentation now lives under trueloyal.com domains.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Loyalty
+- Rewards
+- Points
+- Customer Retention
+- Ecommerce
+- SaaS
+created: '2026-07-10'
+modified: '2026-07-10'
+specificationVersion: '0.19'
+apis:
+- aid: zinrelo:zinrelo-members-api
+  name: Zinrelo Members API
+  tags:
+  - Members
+  - Users
+  - Enrollment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://help.zinrelo.com/reference/introduction
+  baseURL: https://api.zinrelo.com
+  properties:
+  - url: https://help.zinrelo.com/reference/introduction
+    type: Documentation
+  - url: https://zinrelo.github.io/slate/
+    type: APIReference
+  - url: openapi/zinrelo-openapi.yml
+    type: OpenAPI
+  - url: collections/zinrelo.postman_collection.json
+    type: PostmanCollection
+  - url: collections/zinrelo.opencollection.json
+    type: OpenCollection
+  description: >-
+    Enroll, retrieve, list, update, block, and unsubscribe loyalty program
+    members, and read a member's point balances, transactions, redemptions,
+    eligible activities, and next-tier status. Members are identified by email.
+- aid: zinrelo:zinrelo-points-api
+  name: Zinrelo Points API
+  tags:
+  - Points
+  - Award
+  - Deduct
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://help.zinrelo.com/reference/introduction
+  baseURL: https://api.zinrelo.com
+  properties:
+  - url: https://help.zinrelo.com/reference/perform-activity-api
+    type: Documentation
+  - url: https://zinrelo.github.io/slate/
+    type: APIReference
+  - url: openapi/zinrelo-openapi.yml
+    type: OpenAPI
+  - url: collections/zinrelo.postman_collection.json
+    type: PostmanCollection
+  - url: collections/zinrelo.opencollection.json
+    type: OpenCollection
+  description: >-
+    Award points to a member for a completed activity (points determined by the
+    activity configuration in the Zinrelo admin console) and deduct points from
+    a member's account. Powers the earning side of a loyalty program.
+- aid: zinrelo:zinrelo-transactions-api
+  name: Zinrelo Transactions API
+  tags:
+  - Transactions
+  - Purchases
+  - Returns
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://help.zinrelo.com/reference/list-members-transaction-api
+  baseURL: https://api.zinrelo.com
+  properties:
+  - url: https://help.zinrelo.com/reference/list-members-transaction-api
+    type: Documentation
+  - url: https://zinrelo.github.io/slate/
+    type: APIReference
+  - url: openapi/zinrelo-openapi.yml
+    type: OpenAPI
+  - url: collections/zinrelo.postman_collection.json
+    type: PostmanCollection
+  - url: collections/zinrelo.opencollection.json
+    type: OpenCollection
+  description: >-
+    Record purchases (awarding points and storing order and product data) and
+    returns (deducting previously awarded points), and list program-wide or
+    member-scoped transactions with pagination and date and status filters. The
+    v2 loyalty-storefront transactions endpoint returns the authenticated
+    member's transactions.
+- aid: zinrelo:zinrelo-rewards-api
+  name: Zinrelo Rewards API
+  tags:
+  - Rewards
+  - Catalog
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://help.zinrelo.com/reference/list-all-rewards
+  baseURL: https://api.zinrelo.com
+  properties:
+  - url: https://help.zinrelo.com/reference/rewards
+    type: Documentation
+  - url: https://help.zinrelo.com/reference/list-all-rewards
+    type: APIReference
+  - url: openapi/zinrelo-openapi.yml
+    type: OpenAPI
+  - url: collections/zinrelo.postman_collection.json
+    type: PostmanCollection
+  - url: collections/zinrelo.opencollection.json
+    type: OpenCollection
+  description: >-
+    List all rewards a program offers, sorted by last modified date by default
+    and filterable and sortable by rank and points to be redeemed. This is the
+    catalog side of the loyalty program that members redeem points against.
+- aid: zinrelo:zinrelo-redemptions-api
+  name: Zinrelo Redemptions API
+  tags:
+  - Redemptions
+  - Redeem
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://help.zinrelo.com/reference/introduction
+  baseURL: https://api.zinrelo.com
+  properties:
+  - url: https://help.zinrelo.com/reference/introduction
+    type: Documentation
+  - url: https://zinrelo.github.io/slate/
+    type: APIReference
+  - url: openapi/zinrelo-openapi.yml
+    type: OpenAPI
+  - url: collections/zinrelo.postman_collection.json
+    type: PostmanCollection
+  - url: collections/zinrelo.opencollection.json
+    type: OpenCollection
+  description: >-
+    Redeem a member's points for a reward and list the redemption options
+    configured for the program or available to a specific member. Powers the
+    spending side of a loyalty program.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/zinrelo
+- type: Website
+  url: https://www.zinrelo.com
+- type: Documentation
+  url: https://help.zinrelo.com/reference/introduction
+- type: APIReference
+  url: https://zinrelo.github.io/slate/
+- type: Plans
+  url: plans/zinrelo-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/zinrelo-rate-limits.yml
+- type: FinOps
+  url: finops/zinrelo-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

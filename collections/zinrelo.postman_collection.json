@@ -1,0 +1,256 @@
+{
+  "info": {
+    "name": "Zinrelo Loyalty API",
+    "description": "Zinrelo Loyalty REST API for members, points, transactions, rewards, and redemptions. Authenticated with partner-id and api-key headers provisioned to your Zinrelo account. Endpoint paths and parameters are drawn from Zinrelo's public documentation; request bodies are modeled examples.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "partner-id", "type": "string" },
+      { "key": "value", "value": "{{partnerId}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.zinrelo.com" },
+    { "key": "partnerId", "value": "" },
+    { "key": "apiKey", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Members",
+      "item": [
+        {
+          "name": "List members",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/users", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "users"] }
+          }
+        },
+        {
+          "name": "Create a member",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"user_email\": \"member@example.com\",\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Doe\"\n}" },
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/users", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "users"] }
+          }
+        },
+        {
+          "name": "Get a member",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/users/:user_email", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "users", ":user_email"], "variable": [ { "key": "user_email", "value": "member@example.com" } ] }
+          }
+        },
+        {
+          "name": "List a member's transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/users/:user_email/transactions", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "users", ":user_email", "transactions"], "variable": [ { "key": "user_email", "value": "member@example.com" } ] }
+          }
+        },
+        {
+          "name": "Get a member's next tier",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/users/:user_email/next_tier", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "users", ":user_email", "next_tier"], "variable": [ { "key": "user_email", "value": "member@example.com" } ] }
+          }
+        },
+        {
+          "name": "Block a member",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/users/:user_email/block", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "users", ":user_email", "block"], "variable": [ { "key": "user_email", "value": "member@example.com" } ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Points",
+      "item": [
+        {
+          "name": "Award points",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"user_email\": \"member@example.com\",\n  \"activity_id\": \"activity_123\"\n}" },
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/award", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "award"] }
+          }
+        },
+        {
+          "name": "Deduct points",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"user_email\": \"member@example.com\",\n  \"points\": 100\n}" },
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/users/deduct", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "users", "deduct"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "Record a purchase",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"user_email\": \"member@example.com\",\n  \"order_id\": \"order_123\",\n  \"order_total\": 49.99\n}" },
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/purchase", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "purchase"] }
+          }
+        },
+        {
+          "name": "Record a return",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"user_email\": \"member@example.com\",\n  \"order_id\": \"order_123\"\n}" },
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/transaction/return", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "transaction", "return"] }
+          }
+        },
+        {
+          "name": "List transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/transactions?start_cursor=0&count=100", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "transactions"], "query": [ { "key": "start_cursor", "value": "0" }, { "key": "count", "value": "100" } ] }
+          }
+        },
+        {
+          "name": "List member transactions (storefront)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/v2/loyalty-storefront/transactions?start_cursor=0&count=100", "host": ["{{baseUrl}}"], "path": ["v2", "loyalty-storefront", "transactions"], "query": [ { "key": "start_cursor", "value": "0" }, { "key": "count", "value": "100" } ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rewards",
+      "item": [
+        {
+          "name": "List all rewards",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/v2/loyalty/rewards?sort_by=rank", "host": ["{{baseUrl}}"], "path": ["v2", "loyalty", "rewards"], "query": [ { "key": "sort_by", "value": "rank" } ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Redemptions",
+      "item": [
+        {
+          "name": "Redeem points for a reward",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"user_email\": \"member@example.com\",\n  \"reward_id\": \"reward_123\"\n}" },
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/redeem", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "redeem"] }
+          }
+        },
+        {
+          "name": "List redemption options",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/redemptions", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "redemptions"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tiers",
+      "item": [
+        {
+          "name": "List tiers",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/v1/loyalty/tiers", "host": ["{{baseUrl}}"], "path": ["v1", "loyalty", "tiers"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "Get a webhook event",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "partner-id", "value": "{{partnerId}}" },
+              { "key": "api-key", "value": "{{apiKey}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/v1/events/:id", "host": ["{{baseUrl}}"], "path": ["v1", "events", ":id"], "variable": [ { "key": "id", "value": "" } ] }
+          }
+        }
+      ]
+    }
+  ]
+}

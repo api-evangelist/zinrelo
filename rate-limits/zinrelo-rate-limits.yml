@@ -1,0 +1,53 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Zinrelo
+providerId: zinrelo
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Loyalty
+- Rewards
+- Rate Limiting
+- Quotas
+description: >-
+  Zinrelo does not publish specific numeric per-account or per-endpoint rate
+  limits in its public API reference. The documentation groups endpoints into
+  rate-limiting categories (for example a General API category referenced on the
+  rewards endpoint), which implies category-based throttling, but exact request
+  ceilings and windows are not published. Callers should implement pagination
+  (start_cursor and count) on list endpoints, cache reward and tier data that
+  changes infrequently, and apply exponential backoff on throttle responses.
+notes: >-
+  Numeric limits, throttle windows, and the exact set of rate-limit categories
+  are not documented publicly as of the review date; confirm limits with Zinrelo
+  during onboarding. The 429 throttle code below is the conventional expectation
+  and is modeled, not confirmed from Zinrelo documentation.
+sources:
+- https://zinrelo.github.io/slate/
+- https://help.zinrelo.com/reference/introduction
+- https://help.zinrelo.com/reference/list-all-rewards
+responseCodes:
+  throttled: 429
+limits:
+- name: General API Requests
+  scope: account
+  metric: requests
+  limit: not published
+  notes: Endpoints are grouped into rate-limit categories (e.g. General API), but numeric ceilings are not documented.
+- name: List Pagination
+  scope: request
+  metric: records
+  limit: count default 100
+  notes: List endpoints page via start_cursor and count; count defaults to 100 objects per page.
+policies:
+- name: Pagination
+  description: Use start_cursor and count to page through large result sets on list endpoints such as transactions, members, and rewards.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Caching
+  description: Cache rewards, tiers, and other slowly-changing configuration to reduce request volume.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

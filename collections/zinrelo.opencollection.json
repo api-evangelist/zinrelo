@@ -1,0 +1,259 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zinrelo Loyalty API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": [
+        { "key": "partner-id", "value": "{{partnerId}}", "in": "header" },
+        { "key": "api-key", "value": "{{apiKey}}", "in": "header" }
+      ]
+    },
+    "baseUrl": "https://api.zinrelo.com"
+  },
+  "items": [
+    {
+      "info": { "name": "Members", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List members.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.zinrelo.com/v1/loyalty/users" },
+          "docs": "Retrieves all enrolled loyalty program members."
+        },
+        {
+          "info": { "name": "Create a member.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/users",
+            "body": { "type": "json", "data": "{\n  \"user_email\": \"member@example.com\",\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Doe\"\n}" }
+          },
+          "docs": "Enrolls a new participant in the loyalty program."
+        },
+        {
+          "info": { "name": "Get a member.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email",
+            "params": [
+              { "name": "user_email", "value": "", "type": "path", "description": "The member email address." }
+            ]
+          },
+          "docs": "Fetches a member's details and point balances."
+        },
+        {
+          "info": { "name": "List a member's transactions.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email/transactions",
+            "params": [
+              { "name": "user_email", "value": "", "type": "path", "description": "The member email address." }
+            ]
+          },
+          "docs": "Returns the member's historical loyalty transactions."
+        },
+        {
+          "info": { "name": "List a member's eligible activities.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email/eligible_activities",
+            "params": [
+              { "name": "user_email", "value": "", "type": "path", "description": "The member email address." }
+            ]
+          },
+          "docs": "Lists the activities available to the member."
+        },
+        {
+          "info": { "name": "List a member's redemptions.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email/redemptions",
+            "params": [
+              { "name": "user_email", "value": "", "type": "path", "description": "The member email address." }
+            ]
+          },
+          "docs": "Retrieves the redemptions available to the member."
+        },
+        {
+          "info": { "name": "Get a member's next tier.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email/next_tier",
+            "params": [
+              { "name": "user_email", "value": "", "type": "path", "description": "The member email address." }
+            ]
+          },
+          "docs": "Returns the member's upcoming tier status and progress."
+        },
+        {
+          "info": { "name": "Block a member.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email/block",
+            "params": [
+              { "name": "user_email", "value": "", "type": "path", "description": "The member email address." }
+            ]
+          },
+          "docs": "Restricts a member from participating in the loyalty program."
+        },
+        {
+          "info": { "name": "Update a member's email.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/update_user_email",
+            "body": { "type": "json", "data": "{\n  \"old_email\": \"old@example.com\",\n  \"new_email\": \"new@example.com\"\n}" }
+          },
+          "docs": "Modifies the email address associated with a member."
+        },
+        {
+          "info": { "name": "Unsubscribe a member.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/unsubscribe_email",
+            "body": { "type": "json", "data": "{\n  \"user_email\": \"member@example.com\"\n}" }
+          },
+          "docs": "Opts a member out of loyalty program communications."
+        },
+        {
+          "info": { "name": "List unsubscribed members.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.zinrelo.com/v1/loyalty/unsubscribed_users" },
+          "docs": "Lists members who have opted out of communications."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Points", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Award points.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/award",
+            "body": { "type": "json", "data": "{\n  \"user_email\": \"member@example.com\",\n  \"activity_id\": \"activity_123\"\n}" }
+          },
+          "docs": "Grants points to a member for a completed activity."
+        },
+        {
+          "info": { "name": "Deduct points.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/deduct",
+            "body": { "type": "json", "data": "{\n  \"user_email\": \"member@example.com\",\n  \"points\": 100\n}" }
+          },
+          "docs": "Removes points from a member's account."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Transactions", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Record a purchase.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/purchase",
+            "body": { "type": "json", "data": "{\n  \"user_email\": \"member@example.com\",\n  \"order_id\": \"order_123\",\n  \"order_total\": 49.99\n}" }
+          },
+          "docs": "Awards points for a purchase and stores order and product data."
+        },
+        {
+          "info": { "name": "Record a return.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/transaction/return",
+            "body": { "type": "json", "data": "{\n  \"user_email\": \"member@example.com\",\n  \"order_id\": \"order_123\"\n}" }
+          },
+          "docs": "Deducts points that were awarded when an order is returned."
+        },
+        {
+          "info": { "name": "List transactions.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/transactions?start_cursor=0&count=100",
+            "params": [
+              { "name": "start_cursor", "value": "0", "type": "query", "description": "Pagination cursor position." },
+              { "name": "count", "value": "100", "type": "query", "description": "Number of transactions to return." }
+            ]
+          },
+          "docs": "Fetches all loyalty program transactions within a date range."
+        },
+        {
+          "info": { "name": "List member transactions (storefront).", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v2/loyalty-storefront/transactions?start_cursor=0&count=100",
+            "params": [
+              { "name": "start_cursor", "value": "0", "type": "query", "description": "Pagination cursor position." },
+              { "name": "count", "value": "100", "type": "query", "description": "Number of transactions to return." }
+            ]
+          },
+          "docs": "Returns the authenticated member's transactions."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Rewards", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List all rewards.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v2/loyalty/rewards?sort_by=rank",
+            "params": [
+              { "name": "sort_by", "value": "rank", "type": "query", "description": "Sort order such as rank, -rank, or points_to_be_redeemed." }
+            ]
+          },
+          "docs": "Returns all rewards, sorted by last_modified_date by default."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Redemptions", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Redeem points for a reward.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/redeem",
+            "body": { "type": "json", "data": "{\n  \"user_email\": \"member@example.com\",\n  \"reward_id\": \"reward_123\"\n}" }
+          },
+          "docs": "Exchanges a member's points for a reward."
+        },
+        {
+          "info": { "name": "List redemption options.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.zinrelo.com/v1/loyalty/redemptions" },
+          "docs": "Retrieves the redemption option details configured for the program."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Tiers", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List tiers.", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.zinrelo.com/v1/loyalty/tiers" },
+          "docs": "Lists all loyalty tier configurations for the program."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Events", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get a webhook event.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/events/:id",
+            "params": [
+              { "name": "id", "value": "", "type": "path", "description": "The webhook event ID." }
+            ]
+          },
+          "docs": "Retrieves webhook event details by event ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

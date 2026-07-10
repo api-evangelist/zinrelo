@@ -1,0 +1,101 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Zinrelo
+providerId: zinrelo
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Loyalty
+- Rewards
+- Points
+- SaaS
+- Plans
+description: >-
+  Zinrelo does not publish standard, self-serve API pricing tiers. Zinrelo is an
+  enterprise SaaS loyalty platform sold primarily through a quote-based sales
+  process - pricing is custom and depends on program size, member volume, and
+  features. A free trial (no credit card) is available to evaluate the platform,
+  and a Shopify app tier is free up to 500 loyalty members with charges beyond
+  that. The Loyalty API is included with a Zinrelo subscription rather than
+  billed as a separate metered product; API credentials (partner-id and api-key)
+  are provisioned to your account. Exact rates are not reconciled here and must
+  be obtained from Zinrelo sales.
+notes: >-
+  Zinrelo is rebranding to TrueLoyal; current pricing is published at
+  trueloyal.com/pricing and remains quote-based. User reviews note overage fees
+  can add roughly 50 to 70 USD per month on top of annual contracts. Verify all
+  current tiers and rates with Zinrelo/TrueLoyal directly during reconciliation.
+sources:
+- https://www.trueloyal.com/pricing/
+- https://www.zinrelo.com
+- https://apps.shopify.com/zinreloloyalty
+plans:
+- id: zinrelo-free-trial
+  name: Free Trial
+  type: free
+  description: >-
+    Time-limited free trial with no credit card required, for evaluating the
+    Zinrelo loyalty platform and its core features before committing to a paid
+    plan.
+  entries:
+  - label: Trial Access
+    name: trial_access
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (time-limited trial)
+    userMultiplied: false
+  elements:
+  - name: Core Loyalty Features
+  - name: Evaluation Access
+- id: zinrelo-shopify-app
+  name: Shopify App - Free Tier
+  type: free
+  description: >-
+    The Zinrelo (TrueLoyal) Shopify app is free up to 500 loyalty members, with
+    additional charges applying beyond that threshold.
+  entries:
+  - label: Included Loyalty Members
+    name: shopify_free_members
+    type: usage
+    metric: members
+    limit: 500
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free up to 500 members
+    userMultiplied: false
+  elements:
+  - name: Shopify Integration
+  - name: Loyalty and Rewards
+- id: zinrelo-enterprise
+  name: Enterprise / Custom
+  type: enterprise
+  description: >-
+    Custom, quote-based enterprise plan covering higher member volumes, the full
+    holistic loyalty feature set, data analytics, strategy consultation, and API
+    access. Priced by program size and features. Contact Zinrelo sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (quote-based)
+    userMultiplied: false
+  elements:
+  - name: Full Loyalty API Access
+  - name: Data Analytics
+  - name: Strategy Consultation
+  - name: Custom Member Volume Pricing
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
