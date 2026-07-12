@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/zinrelo-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: partnerId
+  type: apiKey
+  in: header
+  parameter: partner-id
+  description: Your Zinrelo Partner ID, provisioned to your account.
+  sources:
+  - openapi/zinrelo-openapi.yml
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: api-key
+  description: Your Zinrelo API key, provisioned to your account.
+  sources:
+  - openapi/zinrelo-openapi.yml

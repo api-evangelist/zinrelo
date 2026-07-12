@@ -146,6 +146,12 @@ apis:
     configured for the program or available to a specific member. Powers the
     spending side of a loyalty program.
 common:
+- type: TrustCenter
+  url: security/zinrelo-trust-center.yml
+- type: DomainSecurity
+  url: security/zinrelo-domain-security.yml
+- type: Authentication
+  url: authentication/zinrelo-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/zinrelo
 - type: Website
