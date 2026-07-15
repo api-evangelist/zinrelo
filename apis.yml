@@ -146,6 +146,8 @@ apis:
     configured for the program or available to a specific member. Powers the
     spending side of a loyalty program.
 common:
+- type: AgenticAccess
+  url: agentic-access/zinrelo-agentic-access.yml
 - type: TrustCenter
   url: security/zinrelo-trust-center.yml
 - type: DomainSecurity
