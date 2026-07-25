@@ -1,0 +1,242 @@
+openapi: 3.0.3
+info:
+  title: Zinrelo Loyalty Events Transactions API
+  description: The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels. It lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards. Every request is authenticated with a partner-id and an api-key sent as HTTP headers, both provisioned to your Zinrelo account. This document models Zinrelo's publicly documented endpoints. The v1 surface is documented in the Zinrelo API reference (slate) and the v2 loyalty and loyalty-storefront surfaces are documented in the Zinrelo help center. Request and response bodies are modeled from the public documentation and examples; verify exact field names and shapes against the live reference before production use.
+  version: '1.0'
+  contact:
+    name: Zinrelo
+    url: https://www.zinrelo.com
+servers:
+- url: https://api.zinrelo.com
+  description: Zinrelo production API
+security:
+- partnerId: []
+  apiKey: []
+tags:
+- name: Transactions
+  description: Record purchases and returns and list loyalty transactions.
+paths:
+  /v1/loyalty/users/{user_email}/transactions:
+    get:
+      operationId: listMemberTransactions
+      tags:
+      - Transactions
+      summary: List a member's transactions
+      description: Returns the historical loyalty transactions for a specific member.
+      parameters:
+      - $ref: '#/components/parameters/UserEmail'
+      responses:
+        '200':
+          description: A list of the member's transactions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/purchase:
+    post:
+      operationId: recordPurchase
+      tags:
+      - Transactions
+      summary: Record a purchase
+      description: Awards points for a purchase and stores the associated order and product data with the transaction.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseRequest'
+      responses:
+        '200':
+          description: The purchase transaction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/transaction/return:
+    post:
+      operationId: recordReturn
+      tags:
+      - Transactions
+      summary: Record a return
+      description: Deducts points that were awarded when an order is later returned.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_email:
+                  type: string
+                order_id:
+                  type: string
+      responses:
+        '200':
+          description: The return transaction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/transactions:
+    get:
+      operationId: listTransactions
+      tags:
+      - Transactions
+      summary: List transactions
+      description: Fetches all loyalty program transactions within a date range.
+      parameters:
+      - name: start_cursor
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: count
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Approved
+          - Rejected
+          - Pending
+      responses:
+        '200':
+          description: A list of transactions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/loyalty-storefront/transactions:
+    get:
+      operationId: listStorefrontTransactions
+      tags:
+      - Transactions
+      summary: List member transactions (storefront)
+      description: Returns a list of the authenticated member's transactions, identified by the access token and partner id. Supports pagination and date, status, and points-status filters.
+      parameters:
+      - name: start_cursor
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: count
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Approved
+          - Rejected
+          - Pending
+      - name: language
+        in: query
+        schema:
+          type: string
+          default: english
+      responses:
+        '200':
+          description: A list of the member's transactions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    TransactionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        total_count:
+          type: integer
+    Transaction:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+        user_email:
+          type: string
+        activity_id:
+          type: string
+        points:
+          type: integer
+        status:
+          type: string
+          enum:
+          - Approved
+          - Rejected
+          - Pending
+        created_date:
+          type: string
+        approved_date:
+          type: string
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
+    PurchaseRequest:
+      type: object
+      required:
+      - user_email
+      properties:
+        user_email:
+          type: string
+        order_id:
+          type: string
+        order_total:
+          type: number
+        products:
+          type: array
+          items:
+            type: object
+  parameters:
+    UserEmail:
+      name: user_email
+      in: path
+      required: true
+      description: The member's email address, used as the member identifier.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed - missing or invalid partner-id or api-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    partnerId:
+      type: apiKey
+      in: header
+      name: partner-id
+      description: Your Zinrelo Partner ID, provisioned to your account.
+    apiKey:
+      type: apiKey
+      in: header
+      name: api-key
+      description: Your Zinrelo API key, provisioned to your account.

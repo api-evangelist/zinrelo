@@ -1,0 +1,427 @@
+openapi: 3.0.3
+info:
+  title: Zinrelo Loyalty Events Members API
+  description: The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels. It lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards. Every request is authenticated with a partner-id and an api-key sent as HTTP headers, both provisioned to your Zinrelo account. This document models Zinrelo's publicly documented endpoints. The v1 surface is documented in the Zinrelo API reference (slate) and the v2 loyalty and loyalty-storefront surfaces are documented in the Zinrelo help center. Request and response bodies are modeled from the public documentation and examples; verify exact field names and shapes against the live reference before production use.
+  version: '1.0'
+  contact:
+    name: Zinrelo
+    url: https://www.zinrelo.com
+servers:
+- url: https://api.zinrelo.com
+  description: Zinrelo production API
+security:
+- partnerId: []
+  apiKey: []
+tags:
+- name: Members
+  description: Enroll, retrieve, update, block, and manage loyalty program members.
+paths:
+  /v1/loyalty/users:
+    get:
+      operationId: listMembers
+      tags:
+      - Members
+      summary: List members
+      description: Retrieves all enrolled loyalty program members.
+      parameters:
+      - name: start_cursor
+        in: query
+        schema:
+          type: integer
+          default: 0
+        description: Pagination cursor position.
+      - name: count
+        in: query
+        schema:
+          type: integer
+          default: 100
+        description: Number of members to return.
+      responses:
+        '200':
+          description: A list of members.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createMember
+      tags:
+      - Members
+      summary: Create a member
+      description: Enrolls a new participant in the loyalty program.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MemberCreate'
+      responses:
+        '200':
+          description: The created member.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/users/{user_email}:
+    get:
+      operationId: getMember
+      tags:
+      - Members
+      summary: Get a member
+      description: Fetches a specific member's details and point balances.
+      parameters:
+      - $ref: '#/components/parameters/UserEmail'
+      responses:
+        '200':
+          description: The member.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v1/loyalty/users/{user_email}/transactions:
+    get:
+      operationId: listMemberTransactions
+      tags:
+      - Members
+      summary: List a member's transactions
+      description: Returns the historical loyalty transactions for a specific member.
+      parameters:
+      - $ref: '#/components/parameters/UserEmail'
+      responses:
+        '200':
+          description: A list of the member's transactions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/users/{user_email}/eligible_activities:
+    get:
+      operationId: listMemberEligibleActivities
+      tags:
+      - Members
+      summary: List a member's eligible activities
+      description: Lists the loyalty activities available to a specific member.
+      parameters:
+      - $ref: '#/components/parameters/UserEmail'
+      responses:
+        '200':
+          description: A list of eligible activities.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/users/{user_email}/redemptions:
+    get:
+      operationId: listMemberRedemptions
+      tags:
+      - Members
+      summary: List a member's redemptions
+      description: Retrieves the redemption options and redemptions available to a member.
+      parameters:
+      - $ref: '#/components/parameters/UserEmail'
+      responses:
+        '200':
+          description: A list of the member's redemptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedemptionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/users/{user_email}/next_tier:
+    get:
+      operationId: getMemberNextTier
+      tags:
+      - Members
+      summary: Get a member's next tier
+      description: Returns the member's upcoming tier status and progress.
+      parameters:
+      - $ref: '#/components/parameters/UserEmail'
+      responses:
+        '200':
+          description: The member's next tier status.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/users/{user_email}/block:
+    put:
+      operationId: blockMember
+      tags:
+      - Members
+      summary: Block a member
+      description: Restricts a member from participating in the loyalty program.
+      parameters:
+      - $ref: '#/components/parameters/UserEmail'
+      responses:
+        '200':
+          description: The member was blocked.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/update_user_email:
+    post:
+      operationId: updateMemberEmail
+      tags:
+      - Members
+      summary: Update a member's email
+      description: Modifies the email address associated with a member.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                old_email:
+                  type: string
+                new_email:
+                  type: string
+      responses:
+        '200':
+          description: The member email was updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/unsubscribe_email:
+    post:
+      operationId: unsubscribeMember
+      tags:
+      - Members
+      summary: Unsubscribe a member
+      description: Opts a member out of loyalty program communications.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_email:
+                  type: string
+      responses:
+        '200':
+          description: The member was unsubscribed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/unsubscribed_users:
+    get:
+      operationId: listUnsubscribedMembers
+      tags:
+      - Members
+      summary: List unsubscribed members
+      description: Lists members who have opted out of communications.
+      responses:
+        '200':
+          description: A list of unsubscribed members.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemberList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/loyalty-storefront/transactions:
+    get:
+      operationId: listStorefrontTransactions
+      tags:
+      - Members
+      summary: List member transactions (storefront)
+      description: Returns a list of the authenticated member's transactions, identified by the access token and partner id. Supports pagination and date, status, and points-status filters.
+      parameters:
+      - name: start_cursor
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: count
+        in: query
+        schema:
+          type: integer
+          default: 100
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Approved
+          - Rejected
+          - Pending
+      - name: language
+        in: query
+        schema:
+          type: string
+          default: english
+      responses:
+        '200':
+          description: A list of the member's transactions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    RedemptionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Redemption'
+        total_count:
+          type: integer
+    TransactionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        total_count:
+          type: integer
+    Member:
+      type: object
+      properties:
+        user_email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        available_points:
+          type: integer
+        redeemed_points:
+          type: integer
+        expired_points:
+          type: integer
+        tier_name:
+          type: string
+        member_since:
+          type: string
+    Transaction:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+        user_email:
+          type: string
+        activity_id:
+          type: string
+        points:
+          type: integer
+        status:
+          type: string
+          enum:
+          - Approved
+          - Rejected
+          - Pending
+        created_date:
+          type: string
+        approved_date:
+          type: string
+    Redemption:
+      type: object
+      properties:
+        redemption_id:
+          type: string
+        user_email:
+          type: string
+        reward_id:
+          type: string
+        points_redeemed:
+          type: integer
+        status:
+          type: string
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
+    MemberCreate:
+      type: object
+      required:
+      - user_email
+      properties:
+        user_email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    MemberList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        total_count:
+          type: integer
+  parameters:
+    UserEmail:
+      name: user_email
+      in: path
+      required: true
+      description: The member's email address, used as the member identifier.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed - missing or invalid partner-id or api-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    partnerId:
+      type: apiKey
+      in: header
+      name: partner-id
+      description: Your Zinrelo Partner ID, provisioned to your account.
+    apiKey:
+      type: apiKey
+      in: header
+      name: api-key
+      description: Your Zinrelo API key, provisioned to your account.

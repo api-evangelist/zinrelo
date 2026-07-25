@@ -1,0 +1,143 @@
+openapi: 3.0.3
+info:
+  title: Zinrelo Loyalty Events Redemptions API
+  description: The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels. It lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards. Every request is authenticated with a partner-id and an api-key sent as HTTP headers, both provisioned to your Zinrelo account. This document models Zinrelo's publicly documented endpoints. The v1 surface is documented in the Zinrelo API reference (slate) and the v2 loyalty and loyalty-storefront surfaces are documented in the Zinrelo help center. Request and response bodies are modeled from the public documentation and examples; verify exact field names and shapes against the live reference before production use.
+  version: '1.0'
+  contact:
+    name: Zinrelo
+    url: https://www.zinrelo.com
+servers:
+- url: https://api.zinrelo.com
+  description: Zinrelo production API
+security:
+- partnerId: []
+  apiKey: []
+tags:
+- name: Redemptions
+  description: Redeem points for rewards and list a member's redemptions.
+paths:
+  /v1/loyalty/users/{user_email}/redemptions:
+    get:
+      operationId: listMemberRedemptions
+      tags:
+      - Redemptions
+      summary: List a member's redemptions
+      description: Retrieves the redemption options and redemptions available to a member.
+      parameters:
+      - $ref: '#/components/parameters/UserEmail'
+      responses:
+        '200':
+          description: A list of the member's redemptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedemptionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/redemptions:
+    get:
+      operationId: listRedemptions
+      tags:
+      - Redemptions
+      summary: List redemption options
+      description: Retrieves the redemption option details configured for the program.
+      responses:
+        '200':
+          description: A list of redemption options.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedemptionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/redeem:
+    post:
+      operationId: redeemPoints
+      tags:
+      - Redemptions
+      summary: Redeem points for a reward
+      description: Exchanges a member's points for a reward.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedeemRequest'
+      responses:
+        '200':
+          description: The redemption transaction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Redemption'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    RedemptionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Redemption'
+        total_count:
+          type: integer
+    RedeemRequest:
+      type: object
+      required:
+      - user_email
+      - reward_id
+      properties:
+        user_email:
+          type: string
+        reward_id:
+          type: string
+    Redemption:
+      type: object
+      properties:
+        redemption_id:
+          type: string
+        user_email:
+          type: string
+        reward_id:
+          type: string
+        points_redeemed:
+          type: integer
+        status:
+          type: string
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
+  parameters:
+    UserEmail:
+      name: user_email
+      in: path
+      required: true
+      description: The member's email address, used as the member identifier.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed - missing or invalid partner-id or api-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    partnerId:
+      type: apiKey
+      in: header
+      name: partner-id
+      description: Your Zinrelo Partner ID, provisioned to your account.
+    apiKey:
+      type: apiKey
+      in: header
+      name: api-key
+      description: Your Zinrelo API key, provisioned to your account.

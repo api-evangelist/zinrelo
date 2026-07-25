@@ -1,0 +1,173 @@
+openapi: 3.0.3
+info:
+  title: Zinrelo Loyalty Events Points API
+  description: The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels. It lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards. Every request is authenticated with a partner-id and an api-key sent as HTTP headers, both provisioned to your Zinrelo account. This document models Zinrelo's publicly documented endpoints. The v1 surface is documented in the Zinrelo API reference (slate) and the v2 loyalty and loyalty-storefront surfaces are documented in the Zinrelo help center. Request and response bodies are modeled from the public documentation and examples; verify exact field names and shapes against the live reference before production use.
+  version: '1.0'
+  contact:
+    name: Zinrelo
+    url: https://www.zinrelo.com
+servers:
+- url: https://api.zinrelo.com
+  description: Zinrelo production API
+security:
+- partnerId: []
+  apiKey: []
+tags:
+- name: Points
+  description: Award, deduct, and manage member point balances.
+paths:
+  /v1/loyalty/award:
+    post:
+      operationId: awardPoints
+      tags:
+      - Points
+      summary: Award points
+      description: Grants points to a member for a completed activity. Based on the activity configuration in the Zinrelo admin console, the appropriate number of points is awarded.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AwardRequest'
+      responses:
+        '200':
+          description: The award transaction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/users/deduct:
+    post:
+      operationId: deductPoints
+      tags:
+      - Points
+      summary: Deduct points
+      description: Removes points from a member's account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeductRequest'
+      responses:
+        '200':
+          description: The deduction transaction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/purchase:
+    post:
+      operationId: recordPurchase
+      tags:
+      - Points
+      summary: Record a purchase
+      description: Awards points for a purchase and stores the associated order and product data with the transaction.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseRequest'
+      responses:
+        '200':
+          description: The purchase transaction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        transaction_id:
+          type: string
+        user_email:
+          type: string
+        activity_id:
+          type: string
+        points:
+          type: integer
+        status:
+          type: string
+          enum:
+          - Approved
+          - Rejected
+          - Pending
+        created_date:
+          type: string
+        approved_date:
+          type: string
+    DeductRequest:
+      type: object
+      required:
+      - user_email
+      - points
+      properties:
+        user_email:
+          type: string
+        points:
+          type: integer
+        reason:
+          type: string
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
+    AwardRequest:
+      type: object
+      required:
+      - user_email
+      - activity_id
+      properties:
+        user_email:
+          type: string
+        activity_id:
+          type: string
+        additional_data:
+          type: object
+    PurchaseRequest:
+      type: object
+      required:
+      - user_email
+      properties:
+        user_email:
+          type: string
+        order_id:
+          type: string
+        order_total:
+          type: number
+        products:
+          type: array
+          items:
+            type: object
+  responses:
+    Unauthorized:
+      description: Authentication failed - missing or invalid partner-id or api-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    partnerId:
+      type: apiKey
+      in: header
+      name: partner-id
+      description: Your Zinrelo Partner ID, provisioned to your account.
+    apiKey:
+      type: apiKey
+      in: header
+      name: api-key
+      description: Your Zinrelo API key, provisioned to your account.

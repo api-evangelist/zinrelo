@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: Zinrelo Loyalty Events Tiers API
+  description: The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels. It lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards. Every request is authenticated with a partner-id and an api-key sent as HTTP headers, both provisioned to your Zinrelo account. This document models Zinrelo's publicly documented endpoints. The v1 surface is documented in the Zinrelo API reference (slate) and the v2 loyalty and loyalty-storefront surfaces are documented in the Zinrelo help center. Request and response bodies are modeled from the public documentation and examples; verify exact field names and shapes against the live reference before production use.
+  version: '1.0'
+  contact:
+    name: Zinrelo
+    url: https://www.zinrelo.com
+servers:
+- url: https://api.zinrelo.com
+  description: Zinrelo production API
+security:
+- partnerId: []
+  apiKey: []
+tags:
+- name: Tiers
+  description: Retrieve loyalty tier configuration and a member's next tier.
+paths:
+  /v1/loyalty/users/{user_email}/next_tier:
+    get:
+      operationId: getMemberNextTier
+      tags:
+      - Tiers
+      summary: Get a member's next tier
+      description: Returns the member's upcoming tier status and progress.
+      parameters:
+      - $ref: '#/components/parameters/UserEmail'
+      responses:
+        '200':
+          description: The member's next tier status.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/loyalty/tiers:
+    get:
+      operationId: listTiers
+      tags:
+      - Tiers
+      summary: List tiers
+      description: Lists all loyalty tier configurations for the program.
+      responses:
+        '200':
+          description: A list of tiers.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    UserEmail:
+      name: user_email
+      in: path
+      required: true
+      description: The member's email address, used as the member identifier.
+      schema:
+        type: string
+  schemas:
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed - missing or invalid partner-id or api-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    partnerId:
+      type: apiKey
+      in: header
+      name: partner-id
+      description: Your Zinrelo Partner ID, provisioned to your account.
+    apiKey:
+      type: apiKey
+      in: header
+      name: api-key
+      description: Your Zinrelo API key, provisioned to your account.
