@@ -1,0 +1,26 @@
+{
+  "provider": "zinrelo",
+  "sources": [
+    "zinrelo-events-api-openapi.yml",
+    "zinrelo-members-api-openapi.yml",
+    "zinrelo-points-api-openapi.yml",
+    "zinrelo-redemptions-api-openapi.yml",
+    "zinrelo-rewards-api-openapi.yml",
+    "zinrelo-tiers-api-openapi.yml",
+    "zinrelo-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "zinrelo-events-api-openapi.yml",
+    "zinrelo-members-api-openapi.yml",
+    "zinrelo-points-api-openapi.yml",
+    "zinrelo-redemptions-api-openapi.yml",
+    "zinrelo-rewards-api-openapi.yml",
+    "zinrelo-tiers-api-openapi.yml",
+    "zinrelo-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
