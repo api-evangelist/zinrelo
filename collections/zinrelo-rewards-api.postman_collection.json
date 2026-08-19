@@ -1,0 +1,207 @@
+{
+  "item": [
+    {
+      "id": "0ba418c3-4923-4370-8f3c-0f1b5e3b483f",
+      "name": "Rewards",
+      "description": {
+        "content": "List and retrieve the rewards a program offers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "461bc446-8ee2-4e2b-918d-36afac6d3838",
+          "name": "List all rewards",
+          "request": {
+            "name": "List all rewards",
+            "description": {
+              "content": "Returns a list of all rewards. By default rewards are sorted by last_modified_date with the most recently modified rewards first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "loyalty",
+                "rewards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "Store language for reward content."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>",
+                  "description": "Sort order such as rank, -rank, or points_to_be_redeemed."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "302884df-89ae-498d-a47f-03f57ca19760",
+              "name": "A list of rewards.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "loyalty",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"reward_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"points_to_be_redeemed\": 5344,\n      \"rank\": 6357,\n      \"last_modified_date\": \"string\"\n    },\n    {\n      \"reward_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"points_to_be_redeemed\": 2438,\n      \"rank\": 8488,\n      \"last_modified_date\": \"string\"\n    }\n  ],\n  \"total_count\": 8015\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c32ae1f-a155-4725-b37e-6a7b26d4667d",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "loyalty",
+                    "rewards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zinrelo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "partner-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "88521fa8-4a04-4c4b-8e3d-a71656e4ebd1",
+    "name": "Zinrelo Loyalty Events Rewards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels. It lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards. Every request is authenticated with a partner-id and an api-key sent as HTTP headers, both provisioned to your Zinrelo account. This document models Zinrelo's publicly documented endpoints. The v1 surface is documented in the Zinrelo API reference (slate) and the v2 loyalty and loyalty-storefront surfaces are documented in the Zinrelo help center. Request and response bodies are modeled from the public documentation and examples; verify exact field names and shapes against the live reference before production use.\n\nContact Support:\n Name: Zinrelo",
+      "type": "text/plain"
+    }
+  }
+}

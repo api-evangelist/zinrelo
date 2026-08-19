@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zinrelo Loyalty Events Rewards API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "partner-id",
+      "value": "{{partner-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rewards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v2/loyalty/rewards",
+            "params": [
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Store language for reward content."
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Sort order such as rank, -rank, or points_to_be_redeemed."
+              }
+            ]
+          },
+          "docs": "Returns a list of all rewards. By default rewards are sorted by last_modified_date with the most recently modified rewards first."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

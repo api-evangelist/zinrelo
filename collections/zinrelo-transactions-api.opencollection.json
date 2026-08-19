@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zinrelo Loyalty Events Transactions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "partner-id",
+      "value": "{{partner-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List a member's transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email/transactions",
+            "params": [
+              {
+                "name": "user_email",
+                "value": "",
+                "type": "path",
+                "description": "The member's email address, used as the member identifier."
+              }
+            ]
+          },
+          "docs": "Returns the historical loyalty transactions for a specific member."
+        },
+        {
+          "info": {
+            "name": "Record a purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/purchase",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Awards points for a purchase and stores the associated order and product data with the transaction."
+        },
+        {
+          "info": {
+            "name": "Record a return",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/transaction/return",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deducts points that were awarded when an order is later returned."
+        },
+        {
+          "info": {
+            "name": "List transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/transactions",
+            "params": [
+              {
+                "name": "start_cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetches all loyalty program transactions within a date range."
+        },
+        {
+          "info": {
+            "name": "List member transactions (storefront)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v2/loyalty-storefront/transactions",
+            "params": [
+              {
+                "name": "start_cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of the authenticated member's transactions, identified by the access token and partner id. Supports pagination and date, status, and points-status filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

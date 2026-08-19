@@ -1,0 +1,254 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zinrelo Loyalty Events Members API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "partner-id",
+      "value": "{{partner-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Members",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users",
+            "params": [
+              {
+                "name": "start_cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor position."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of members to return."
+              }
+            ]
+          },
+          "docs": "Retrieves all enrolled loyalty program members."
+        },
+        {
+          "info": {
+            "name": "Create a member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enrolls a new participant in the loyalty program."
+        },
+        {
+          "info": {
+            "name": "Get a member",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email",
+            "params": [
+              {
+                "name": "user_email",
+                "value": "",
+                "type": "path",
+                "description": "The member's email address, used as the member identifier."
+              }
+            ]
+          },
+          "docs": "Fetches a specific member's details and point balances."
+        },
+        {
+          "info": {
+            "name": "List a member's transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email/transactions",
+            "params": [
+              {
+                "name": "user_email",
+                "value": "",
+                "type": "path",
+                "description": "The member's email address, used as the member identifier."
+              }
+            ]
+          },
+          "docs": "Returns the historical loyalty transactions for a specific member."
+        },
+        {
+          "info": {
+            "name": "List a member's eligible activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email/eligible_activities",
+            "params": [
+              {
+                "name": "user_email",
+                "value": "",
+                "type": "path",
+                "description": "The member's email address, used as the member identifier."
+              }
+            ]
+          },
+          "docs": "Lists the loyalty activities available to a specific member."
+        },
+        {
+          "info": {
+            "name": "List a member's redemptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email/redemptions",
+            "params": [
+              {
+                "name": "user_email",
+                "value": "",
+                "type": "path",
+                "description": "The member's email address, used as the member identifier."
+              }
+            ]
+          },
+          "docs": "Retrieves the redemption options and redemptions available to a member."
+        },
+        {
+          "info": {
+            "name": "Get a member's next tier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email/next_tier",
+            "params": [
+              {
+                "name": "user_email",
+                "value": "",
+                "type": "path",
+                "description": "The member's email address, used as the member identifier."
+              }
+            ]
+          },
+          "docs": "Returns the member's upcoming tier status and progress."
+        },
+        {
+          "info": {
+            "name": "Block a member",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email/block",
+            "params": [
+              {
+                "name": "user_email",
+                "value": "",
+                "type": "path",
+                "description": "The member's email address, used as the member identifier."
+              }
+            ]
+          },
+          "docs": "Restricts a member from participating in the loyalty program."
+        },
+        {
+          "info": {
+            "name": "Update a member's email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/update_user_email",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies the email address associated with a member."
+        },
+        {
+          "info": {
+            "name": "Unsubscribe a member",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/unsubscribe_email",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Opts a member out of loyalty program communications."
+        },
+        {
+          "info": {
+            "name": "List unsubscribed members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/unsubscribed_users"
+          },
+          "docs": "Lists members who have opted out of communications."
+        },
+        {
+          "info": {
+            "name": "List member transactions (storefront)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v2/loyalty-storefront/transactions",
+            "params": [
+              {
+                "name": "start_cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of the authenticated member's transactions, identified by the access token and partner id. Supports pagination and date, status, and points-status filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

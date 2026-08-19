@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zinrelo Loyalty Events API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "partner-id",
+      "value": "{{partner-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a webhook event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/events/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves webhook event details by event ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

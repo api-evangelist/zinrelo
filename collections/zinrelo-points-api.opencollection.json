@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zinrelo Loyalty Events Points API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "partner-id",
+      "value": "{{partner-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Points",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Award points",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/award",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grants points to a member for a completed activity. Based on the activity configuration in the Zinrelo admin console, the appropriate number of points is awarded."
+        },
+        {
+          "info": {
+            "name": "Deduct points",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/deduct",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes points from a member's account."
+        },
+        {
+          "info": {
+            "name": "Record a purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/purchase",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Awards points for a purchase and stores the associated order and product data with the transaction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

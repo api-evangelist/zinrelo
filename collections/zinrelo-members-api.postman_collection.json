@@ -1,0 +1,1977 @@
+{
+  "item": [
+    {
+      "id": "6607496b-4761-4b9c-b901-bc989ccebf3e",
+      "name": "Members",
+      "description": {
+        "content": "Enroll, retrieve, update, block, and manage loyalty program members.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c17e54d5-9775-4142-8ae2-e52a3e3e6597",
+          "name": "List members",
+          "request": {
+            "name": "List members",
+            "description": {
+              "content": "Retrieves all enrolled loyalty program members.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_cursor",
+                  "value": "0",
+                  "description": "Pagination cursor position."
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "100",
+                  "description": "Number of members to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0b57ec4-65e4-4f7e-918a-336486160422",
+              "name": "A list of members.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_cursor",
+                      "value": "0"
+                    },
+                    {
+                      "key": "count",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"user_email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"available_points\": 2324,\n      \"redeemed_points\": 5957,\n      \"expired_points\": 7670,\n      \"tier_name\": \"string\",\n      \"member_since\": \"string\"\n    },\n    {\n      \"user_email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"available_points\": 4471,\n      \"redeemed_points\": 8563,\n      \"expired_points\": 669,\n      \"tier_name\": \"string\",\n      \"member_since\": \"string\"\n    }\n  ],\n  \"total_count\": 3334\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce3e71af-0d46-44f0-8ef3-bc0d1c3b206a",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_cursor",
+                      "value": "0"
+                    },
+                    {
+                      "key": "count",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f1f911d-61d4-43c3-984e-2b54db973f59",
+          "name": "Create a member",
+          "request": {
+            "name": "Create a member",
+            "description": {
+              "content": "Enrolls a new participant in the loyalty program.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "20ed4b8d-050b-491f-b74b-3dada5dfb091",
+              "name": "The created member.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user_email\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"available_points\": 6682,\n  \"redeemed_points\": 1658,\n  \"expired_points\": 7852,\n  \"tier_name\": \"string\",\n  \"member_since\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "819c6df3-6f02-4551-a49e-4a21559dbe65",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "168685e0-133e-4d94-a741-6f78a3bcafde",
+          "name": "Get a member",
+          "request": {
+            "name": "Get a member",
+            "description": {
+              "content": "Fetches a specific member's details and point balances.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "users",
+                ":user_email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_email",
+                  "description": "(Required) The member's email address, used as the member identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b57e000-4bba-4ec9-a08f-edd10a36e8ff",
+              "name": "The member.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user_email\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"available_points\": 6682,\n  \"redeemed_points\": 1658,\n  \"expired_points\": 7852,\n  \"tier_name\": \"string\",\n  \"member_since\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e4e5a8f-34a3-49bb-897f-692bb35414d6",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a672574-67d3-4a67-ade3-3da75c232d01",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bad44e63-afd3-428f-8319-8c155ab75140",
+          "name": "List a member's transactions",
+          "request": {
+            "name": "List a member's transactions",
+            "description": {
+              "content": "Returns the historical loyalty transactions for a specific member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "users",
+                ":user_email",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_email",
+                  "description": "(Required) The member's email address, used as the member identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b1e5cd0-267d-43d5-9edf-08f816f45e1f",
+              "name": "A list of the member's transactions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"transaction_id\": \"string\",\n      \"user_email\": \"string\",\n      \"activity_id\": \"string\",\n      \"points\": 1965,\n      \"status\": \"Pending\",\n      \"created_date\": \"string\",\n      \"approved_date\": \"string\"\n    },\n    {\n      \"transaction_id\": \"string\",\n      \"user_email\": \"string\",\n      \"activity_id\": \"string\",\n      \"points\": 2012,\n      \"status\": \"Pending\",\n      \"created_date\": \"string\",\n      \"approved_date\": \"string\"\n    }\n  ],\n  \"total_count\": 5283\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df2d12b9-4884-4a3c-accb-0d11959b1159",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "489b9762-c31f-4bd6-a944-bb5986c2010a",
+          "name": "List a member's eligible activities",
+          "request": {
+            "name": "List a member's eligible activities",
+            "description": {
+              "content": "Lists the loyalty activities available to a specific member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "users",
+                ":user_email",
+                "eligible_activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_email",
+                  "description": "(Required) The member's email address, used as the member identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5104943b-0c3f-482c-939d-73a04d28bd10",
+              "name": "A list of eligible activities.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email",
+                    "eligible_activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8fd38c4-103a-4bcb-99f5-032a4711c548",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email",
+                    "eligible_activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19671edd-a0b0-4568-a460-f104e5417a03",
+          "name": "List a member's redemptions",
+          "request": {
+            "name": "List a member's redemptions",
+            "description": {
+              "content": "Retrieves the redemption options and redemptions available to a member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "users",
+                ":user_email",
+                "redemptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_email",
+                  "description": "(Required) The member's email address, used as the member identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ae2470b-1d8b-4b7e-9473-bc72366307da",
+              "name": "A list of the member's redemptions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email",
+                    "redemptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"redemption_id\": \"string\",\n      \"user_email\": \"string\",\n      \"reward_id\": \"string\",\n      \"points_redeemed\": 7833,\n      \"status\": \"string\"\n    },\n    {\n      \"redemption_id\": \"string\",\n      \"user_email\": \"string\",\n      \"reward_id\": \"string\",\n      \"points_redeemed\": 3824,\n      \"status\": \"string\"\n    }\n  ],\n  \"total_count\": 1370\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec2d5091-dece-41c1-b8e8-34833e558c87",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email",
+                    "redemptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b71a9def-94cb-4fb5-82ce-98c507216ef3",
+          "name": "Get a member's next tier",
+          "request": {
+            "name": "Get a member's next tier",
+            "description": {
+              "content": "Returns the member's upcoming tier status and progress.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "users",
+                ":user_email",
+                "next_tier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_email",
+                  "description": "(Required) The member's email address, used as the member identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7b890e5-fd6d-4fb6-9119-1918c6da9677",
+              "name": "The member's next tier status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email",
+                    "next_tier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68d49a94-1f01-4663-953d-8af4c7fde587",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email",
+                    "next_tier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "229d74e7-55cc-4f22-9e69-ae60ca476b08",
+          "name": "Block a member",
+          "request": {
+            "name": "Block a member",
+            "description": {
+              "content": "Restricts a member from participating in the loyalty program.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "users",
+                ":user_email",
+                "block"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_email",
+                  "description": "(Required) The member's email address, used as the member identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "528473eb-25da-430b-9618-a32cb34bd063",
+              "name": "The member was blocked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email",
+                    "block"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23c35448-b9ab-4725-ba30-1f0f506570cb",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    ":user_email",
+                    "block"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_email",
+                      "description": "(Required) The member's email address, used as the member identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd26f3e9-55b1-4f35-9507-d89797ca362f",
+          "name": "Update a member's email",
+          "request": {
+            "name": "Update a member's email",
+            "description": {
+              "content": "Modifies the email address associated with a member.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "update_user_email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"old_email\": \"<string>\",\n  \"new_email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a5d2757-d01a-4de8-a7e7-6067fc96cd7b",
+              "name": "The member email was updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "update_user_email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"old_email\": \"<string>\",\n  \"new_email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4afc97c3-d2f8-40c8-bc7f-a21d512f05b2",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "update_user_email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"old_email\": \"<string>\",\n  \"new_email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58e74c04-9554-43f0-a2dd-e871daec3136",
+          "name": "Unsubscribe a member",
+          "request": {
+            "name": "Unsubscribe a member",
+            "description": {
+              "content": "Opts a member out of loyalty program communications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "unsubscribe_email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "189553b4-e2ab-47bf-8f27-c5ab81ce8f7c",
+              "name": "The member was unsubscribed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "unsubscribe_email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "483ea5cc-1f04-412f-8f9d-7a44c62273db",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "unsubscribe_email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3435bd4d-7fbd-4349-a315-356dc48774b8",
+          "name": "List unsubscribed members",
+          "request": {
+            "name": "List unsubscribed members",
+            "description": {
+              "content": "Lists members who have opted out of communications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "unsubscribed_users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32846370-d6a7-4a3b-a59e-b93bb866020a",
+              "name": "A list of unsubscribed members.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "unsubscribed_users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"user_email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"available_points\": 3223,\n      \"redeemed_points\": 8910,\n      \"expired_points\": 3978,\n      \"tier_name\": \"string\",\n      \"member_since\": \"string\"\n    },\n    {\n      \"user_email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"available_points\": 800,\n      \"redeemed_points\": 6575,\n      \"expired_points\": 9231,\n      \"tier_name\": \"string\",\n      \"member_since\": \"string\"\n    }\n  ],\n  \"total_count\": 8433\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91135a2e-bf55-4522-a2d0-8be2b06c2b2f",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "unsubscribed_users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5327e0c-10fb-408d-8932-533b44528c04",
+          "name": "List member transactions (storefront)",
+          "request": {
+            "name": "List member transactions (storefront)",
+            "description": {
+              "content": "Returns a list of the authenticated member's transactions, identified by the access token and partner id. Supports pagination and date, status, and points-status filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "loyalty-storefront",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_cursor",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "english"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4aeb5b19-0c6c-4ec1-bd9a-4d4dc63cd37e",
+              "name": "A list of the member's transactions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "loyalty-storefront",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_cursor",
+                      "value": "0"
+                    },
+                    {
+                      "key": "count",
+                      "value": "100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "english"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"transaction_id\": \"string\",\n      \"user_email\": \"string\",\n      \"activity_id\": \"string\",\n      \"points\": 3606,\n      \"status\": \"Rejected\",\n      \"created_date\": \"string\",\n      \"approved_date\": \"string\"\n    },\n    {\n      \"transaction_id\": \"string\",\n      \"user_email\": \"string\",\n      \"activity_id\": \"string\",\n      \"points\": 9625,\n      \"status\": \"Rejected\",\n      \"created_date\": \"string\",\n      \"approved_date\": \"string\"\n    }\n  ],\n  \"total_count\": 789\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c631313-2569-4611-8ae3-5fc61b4a27b3",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "loyalty-storefront",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_cursor",
+                      "value": "0"
+                    },
+                    {
+                      "key": "count",
+                      "value": "100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "english"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zinrelo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "partner-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1ae7cec2-12ae-480b-93ee-3336e4d5285f",
+    "name": "Zinrelo Loyalty Events Members API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels. It lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards. Every request is authenticated with a partner-id and an api-key sent as HTTP headers, both provisioned to your Zinrelo account. This document models Zinrelo's publicly documented endpoints. The v1 surface is documented in the Zinrelo API reference (slate) and the v2 loyalty and loyalty-storefront surfaces are documented in the Zinrelo help center. Request and response bodies are modeled from the public documentation and examples; verify exact field names and shapes against the live reference before production use.\n\nContact Support:\n Name: Zinrelo",
+      "type": "text/plain"
+    }
+  }
+}

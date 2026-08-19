@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zinrelo Loyalty Events Redemptions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "partner-id",
+      "value": "{{partner-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Redemptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List a member's redemptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/users/:user_email/redemptions",
+            "params": [
+              {
+                "name": "user_email",
+                "value": "",
+                "type": "path",
+                "description": "The member's email address, used as the member identifier."
+              }
+            ]
+          },
+          "docs": "Retrieves the redemption options and redemptions available to a member."
+        },
+        {
+          "info": {
+            "name": "List redemption options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zinrelo.com/v1/loyalty/redemptions"
+          },
+          "docs": "Retrieves the redemption option details configured for the program."
+        },
+        {
+          "info": {
+            "name": "Redeem points for a reward",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zinrelo.com/v1/loyalty/redeem",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchanges a member's points for a reward."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

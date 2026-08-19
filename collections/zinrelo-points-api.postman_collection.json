@@ -1,0 +1,520 @@
+{
+  "item": [
+    {
+      "id": "844df413-1814-4727-b081-6df9054494eb",
+      "name": "Points",
+      "description": {
+        "content": "Award, deduct, and manage member point balances.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "688b5377-2cf7-4bb1-af86-2400a5fa9cf2",
+          "name": "Award points",
+          "request": {
+            "name": "Award points",
+            "description": {
+              "content": "Grants points to a member for a completed activity. Based on the activity configuration in the Zinrelo admin console, the appropriate number of points is awarded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "award"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_email\": \"<string>\",\n  \"activity_id\": \"<string>\",\n  \"additional_data\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8bdc3c78-0706-4039-80a5-b5008f255934",
+              "name": "The award transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "award"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_email\": \"<string>\",\n  \"activity_id\": \"<string>\",\n  \"additional_data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transaction_id\": \"string\",\n  \"user_email\": \"string\",\n  \"activity_id\": \"string\",\n  \"points\": 8270,\n  \"status\": \"Approved\",\n  \"created_date\": \"string\",\n  \"approved_date\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4187bc8-a348-4e45-a274-822f89860491",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "award"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_email\": \"<string>\",\n  \"activity_id\": \"<string>\",\n  \"additional_data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "414c4c02-a256-4567-a948-8bb22c7fe23e",
+          "name": "Deduct points",
+          "request": {
+            "name": "Deduct points",
+            "description": {
+              "content": "Removes points from a member's account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "users",
+                "deduct"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_email\": \"<string>\",\n  \"points\": \"<integer>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0491649d-9fa9-4477-84e6-ee8d98e2a6a4",
+              "name": "The deduction transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    "deduct"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_email\": \"<string>\",\n  \"points\": \"<integer>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transaction_id\": \"string\",\n  \"user_email\": \"string\",\n  \"activity_id\": \"string\",\n  \"points\": 8270,\n  \"status\": \"Approved\",\n  \"created_date\": \"string\",\n  \"approved_date\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e837763-e922-4b35-98a0-d32626d99953",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "users",
+                    "deduct"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_email\": \"<string>\",\n  \"points\": \"<integer>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f13722ec-b68f-42c5-a305-e57a4a3472e0",
+          "name": "Record a purchase",
+          "request": {
+            "name": "Record a purchase",
+            "description": {
+              "content": "Awards points for a purchase and stores the associated order and product data with the transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loyalty",
+                "purchase"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_email\": \"<string>\",\n  \"order_id\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"products\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8738c825-93c6-4299-849d-ebb33c070422",
+              "name": "The purchase transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "purchase"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_email\": \"<string>\",\n  \"order_id\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"products\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transaction_id\": \"string\",\n  \"user_email\": \"string\",\n  \"activity_id\": \"string\",\n  \"points\": 8270,\n  \"status\": \"Approved\",\n  \"created_date\": \"string\",\n  \"approved_date\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc0a4de4-3799-4112-9324-ddf19c6a521c",
+              "name": "Authentication failed - missing or invalid partner-id or api-key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loyalty",
+                    "purchase"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "partner-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_email\": \"<string>\",\n  \"order_id\": \"<string>\",\n  \"order_total\": \"<number>\",\n  \"products\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error_code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zinrelo.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "partner-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "46bd1555-e155-412a-8233-2f254810db8a",
+    "name": "Zinrelo Loyalty Events Points API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels. It lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards. Every request is authenticated with a partner-id and an api-key sent as HTTP headers, both provisioned to your Zinrelo account. This document models Zinrelo's publicly documented endpoints. The v1 surface is documented in the Zinrelo API reference (slate) and the v2 loyalty and loyalty-storefront surfaces are documented in the Zinrelo help center. Request and response bodies are modeled from the public documentation and examples; verify exact field names and shapes against the live reference before production use.\n\nContact Support:\n Name: Zinrelo",
+      "type": "text/plain"
+    }
+  }
+}
