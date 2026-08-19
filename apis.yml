@@ -36,7 +36,7 @@ tags:
 - SaaS
 created: '2026-07-10'
 modified: '2026-07-10'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: zinrelo:zinrelo-events-api
   name: Zinrelo Events API
