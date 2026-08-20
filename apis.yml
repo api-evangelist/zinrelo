@@ -32,6 +32,13 @@ tags:
 - Rewards
 - Points
 - Customer Retention
+- E-Commerce
+- Software-as-a-Service
+tags_raw:
+- Loyalty
+- Rewards
+- Points
+- Customer Retention
 - Ecommerce
 - SaaS
 created: '2026-07-10'
@@ -44,6 +51,8 @@ apis:
   humanURL: https://help.zinrelo.com/reference/introduction
   baseURL: https://api.zinrelo.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -200,6 +209,8 @@ apis:
   humanURL: https://help.zinrelo.com/reference/introduction
   baseURL: https://api.zinrelo.com
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
