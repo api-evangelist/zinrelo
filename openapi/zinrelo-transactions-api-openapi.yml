@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Zinrelo Loyalty Events Transactions API
-  description: The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels. It lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards. Every request is authenticated with a partner-id and an api-key sent as HTTP headers, both provisioned to your Zinrelo account. This document models Zinrelo's publicly documented endpoints. The v1 surface is documented in the Zinrelo API reference (slate) and the v2 loyalty and loyalty-storefront surfaces are documented in the Zinrelo help center. Request and response bodies are modeled from the public documentation and examples; verify exact field names and shapes against the live reference before production use.
+  title: Zinrelo Loyalty Transactions API
+  description: The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels.
   version: '1.0'
   contact:
     name: Zinrelo
@@ -160,6 +160,30 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
+    PurchaseRequest:
+      type: object
+      required:
+      - user_email
+      properties:
+        user_email:
+          type: string
+        order_id:
+          type: string
+        order_total:
+          type: number
+        products:
+          type: array
+          items:
+            type: object
     TransactionList:
       type: object
       properties:
@@ -190,30 +214,6 @@ components:
           type: string
         approved_date:
           type: string
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error_code:
-          type: string
-        message:
-          type: string
-    PurchaseRequest:
-      type: object
-      required:
-      - user_email
-      properties:
-        user_email:
-          type: string
-        order_id:
-          type: string
-        order_total:
-          type: number
-        products:
-          type: array
-          items:
-            type: object
   parameters:
     UserEmail:
       name: user_email

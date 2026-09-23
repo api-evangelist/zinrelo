@@ -1,13 +1,7 @@
 {
   "provider": "zinrelo",
   "sources": [
-    "zinrelo-events-api-openapi.yml",
-    "zinrelo-members-api-openapi.yml",
-    "zinrelo-points-api-openapi.yml",
-    "zinrelo-redemptions-api-openapi.yml",
-    "zinrelo-rewards-api-openapi.yml",
-    "zinrelo-tiers-api-openapi.yml",
-    "zinrelo-transactions-api-openapi.yml"
+    "_original/zinrelo-openapi.yml"
   ],
   "outputs": [
     "zinrelo-events-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "zinrelo-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "zinrelo-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zinrelo-members-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zinrelo-points-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zinrelo-redemptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zinrelo-rewards-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zinrelo-tiers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zinrelo-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

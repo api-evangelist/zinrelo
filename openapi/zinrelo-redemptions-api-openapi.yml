@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Zinrelo Loyalty Events Redemptions API
-  description: The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels. It lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards. Every request is authenticated with a partner-id and an api-key sent as HTTP headers, both provisioned to your Zinrelo account. This document models Zinrelo's publicly documented endpoints. The v1 surface is documented in the Zinrelo API reference (slate) and the v2 loyalty and loyalty-storefront surfaces are documented in the Zinrelo help center. Request and response bodies are modeled from the public documentation and examples; verify exact field names and shapes against the live reference before production use.
+  title: Zinrelo Loyalty Redemptions API
+  description: The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels.
   version: '1.0'
   contact:
     name: Zinrelo
@@ -74,25 +74,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    RedemptionList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Redemption'
-        total_count:
-          type: integer
-    RedeemRequest:
-      type: object
-      required:
-      - user_email
-      - reward_id
-      properties:
-        user_email:
-          type: string
-        reward_id:
-          type: string
     Redemption:
       type: object
       properties:
@@ -115,6 +96,25 @@ components:
           type: string
         message:
           type: string
+    RedeemRequest:
+      type: object
+      required:
+      - user_email
+      - reward_id
+      properties:
+        user_email:
+          type: string
+        reward_id:
+          type: string
+    RedemptionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Redemption'
+        total_count:
+          type: integer
   parameters:
     UserEmail:
       name: user_email

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Zinrelo Loyalty Events Members API
-  description: The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels. It lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards. Every request is authenticated with a partner-id and an api-key sent as HTTP headers, both provisioned to your Zinrelo account. This document models Zinrelo's publicly documented endpoints. The v1 surface is documented in the Zinrelo API reference (slate) and the v2 loyalty and loyalty-storefront surfaces are documented in the Zinrelo help center. Request and response bodies are modeled from the public documentation and examples; verify exact field names and shapes against the live reference before production use.
+  title: Zinrelo Loyalty Members API
+  description: The Zinrelo Loyalty API is a REST API for building and operating loyalty and rewards programs across web, mobile, in-store, and other sales channels.
   version: '1.0'
   contact:
     name: Zinrelo
@@ -286,24 +286,19 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    RedemptionList:
+    Redemption:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Redemption'
-        total_count:
+        redemption_id:
+          type: string
+        user_email:
+          type: string
+        reward_id:
+          type: string
+        points_redeemed:
           type: integer
-    TransactionList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-        total_count:
-          type: integer
+        status:
+          type: string
     Member:
       type: object
       properties:
@@ -323,6 +318,33 @@ components:
           type: string
         member_since:
           type: string
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
+    TransactionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        total_count:
+          type: integer
+    MemberList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        total_count:
+          type: integer
     Transaction:
       type: object
       properties:
@@ -344,28 +366,6 @@ components:
           type: string
         approved_date:
           type: string
-    Redemption:
-      type: object
-      properties:
-        redemption_id:
-          type: string
-        user_email:
-          type: string
-        reward_id:
-          type: string
-        points_redeemed:
-          type: integer
-        status:
-          type: string
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error_code:
-          type: string
-        message:
-          type: string
     MemberCreate:
       type: object
       required:
@@ -377,6 +377,15 @@ components:
           type: string
         last_name:
           type: string
+    RedemptionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Redemption'
+        total_count:
+          type: integer
     StatusResponse:
       type: object
       properties:
@@ -384,15 +393,19 @@ components:
           type: boolean
         message:
           type: string
-    MemberList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Member'
-        total_count:
-          type: integer
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed - missing or invalid partner-id or api-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     UserEmail:
       name: user_email
@@ -401,19 +414,6 @@ components:
       description: The member's email address, used as the member identifier.
       schema:
         type: string
-  responses:
-    Unauthorized:
-      description: Authentication failed - missing or invalid partner-id or api-key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     partnerId:
       type: apiKey
