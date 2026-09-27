@@ -84,42 +84,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error_code:
-          type: string
-        message:
-          type: string
-    AwardRequest:
-      type: object
-      required:
-      - user_email
-      - activity_id
-      properties:
-        user_email:
-          type: string
-        activity_id:
-          type: string
-        additional_data:
-          type: object
-    PurchaseRequest:
-      type: object
-      required:
-      - user_email
-      properties:
-        user_email:
-          type: string
-        order_id:
-          type: string
-        order_total:
-          type: number
-        products:
-          type: array
-          items:
-            type: object
     DeductRequest:
       type: object
       required:
@@ -152,6 +116,42 @@ components:
         created_date:
           type: string
         approved_date:
+          type: string
+    AwardRequest:
+      type: object
+      required:
+      - user_email
+      - activity_id
+      properties:
+        user_email:
+          type: string
+        activity_id:
+          type: string
+        additional_data:
+          type: object
+    PurchaseRequest:
+      type: object
+      required:
+      - user_email
+      properties:
+        user_email:
+          type: string
+        order_id:
+          type: string
+        order_total:
+          type: number
+        products:
+          type: array
+          items:
+            type: object
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
           type: string
   responses:
     Unauthorized:

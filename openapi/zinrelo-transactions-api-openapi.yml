@@ -159,40 +159,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed - missing or invalid partner-id or api-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error_code:
-          type: string
-        message:
-          type: string
-    PurchaseRequest:
-      type: object
-      required:
-      - user_email
-      properties:
-        user_email:
-          type: string
-        order_id:
-          type: string
-        order_total:
-          type: number
-        products:
-          type: array
-          items:
-            type: object
-    TransactionList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-        total_count:
-          type: integer
     Transaction:
       type: object
       properties:
@@ -214,6 +188,39 @@ components:
           type: string
         approved_date:
           type: string
+    TransactionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        total_count:
+          type: integer
+    PurchaseRequest:
+      type: object
+      required:
+      - user_email
+      properties:
+        user_email:
+          type: string
+        order_id:
+          type: string
+        order_total:
+          type: number
+        products:
+          type: array
+          items:
+            type: object
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
   parameters:
     UserEmail:
       name: user_email
@@ -222,13 +229,6 @@ components:
       description: The member's email address, used as the member identifier.
       schema:
         type: string
-  responses:
-    Unauthorized:
-      description: Authentication failed - missing or invalid partner-id or api-key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     partnerId:
       type: apiKey

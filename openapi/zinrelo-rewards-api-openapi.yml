@@ -45,6 +45,15 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
     Reward:
       type: object
       properties:
@@ -69,15 +78,6 @@ components:
             $ref: '#/components/schemas/Reward'
         total_count:
           type: integer
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error_code:
-          type: string
-        message:
-          type: string
   responses:
     Unauthorized:
       description: Authentication failed - missing or invalid partner-id or api-key.
