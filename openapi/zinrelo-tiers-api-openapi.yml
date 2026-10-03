@@ -51,6 +51,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    UserEmail:
+      name: user_email
+      in: path
+      required: true
+      description: The member's email address, used as the member identifier.
+      schema:
+        type: string
   schemas:
     Error:
       type: object
@@ -68,14 +76,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    UserEmail:
-      name: user_email
-      in: path
-      required: true
-      description: The member's email address, used as the member identifier.
-      schema:
-        type: string
   securitySchemes:
     partnerId:
       type: apiKey

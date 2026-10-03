@@ -285,20 +285,93 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed - missing or invalid partner-id or api-key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    MemberList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
+        total_count:
+          type: integer
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    TransactionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        total_count:
+          type: integer
+    RedemptionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Redemption'
+        total_count:
+          type: integer
+    Member:
+      type: object
+      properties:
+        user_email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        available_points:
+          type: integer
+        redeemed_points:
+          type: integer
+        expired_points:
+          type: integer
+        tier_name:
+          type: string
+        member_since:
+          type: string
+    MemberCreate:
+      type: object
+      required:
+      - user_email
+      properties:
+        user_email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
+    Redemption:
+      type: object
+      properties:
+        redemption_id:
+          type: string
+        user_email:
+          type: string
+        reward_id:
+          type: string
+        points_redeemed:
+          type: integer
+        status:
+          type: string
     Transaction:
       type: object
       properties:
@@ -320,92 +393,6 @@ components:
           type: string
         approved_date:
           type: string
-    Member:
-      type: object
-      properties:
-        user_email:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        available_points:
-          type: integer
-        redeemed_points:
-          type: integer
-        expired_points:
-          type: integer
-        tier_name:
-          type: string
-        member_since:
-          type: string
-    StatusResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-    Redemption:
-      type: object
-      properties:
-        redemption_id:
-          type: string
-        user_email:
-          type: string
-        reward_id:
-          type: string
-        points_redeemed:
-          type: integer
-        status:
-          type: string
-    TransactionList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-        total_count:
-          type: integer
-    RedemptionList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Redemption'
-        total_count:
-          type: integer
-    MemberList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Member'
-        total_count:
-          type: integer
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error_code:
-          type: string
-        message:
-          type: string
-    MemberCreate:
-      type: object
-      required:
-      - user_email
-      properties:
-        user_email:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
   parameters:
     UserEmail:
       name: user_email
@@ -414,6 +401,19 @@ components:
       description: The member's email address, used as the member identifier.
       schema:
         type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed - missing or invalid partner-id or api-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     partnerId:
       type: apiKey
