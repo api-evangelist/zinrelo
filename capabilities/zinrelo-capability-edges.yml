@@ -1,0 +1,74 @@
+slug: zinrelo
+provider: Zinrelo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Points
+  spec_file: zinrelo-points-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.92
+  evidence: POST /v1/loyalty/award  awardPoints  Award points; POST /v1/loyalty/users/deduct  deductPoints
+  reason: Awarding and deducting loyalty points and recording qualifying purchases is the core mechanic
+    of a loyalty programme, mapping to Loyalty & Retention Management.
+- tag: Redemptions
+  spec_file: zinrelo-redemptions-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.92
+  evidence: POST /v1/loyalty/redeem  redeemPoints  Redeem points for a reward; GET /v1/loyalty/redemptions  listRedemptions  List
+    redemption options
+  reason: Redemption of loyalty points for rewards is loyalty programme operation, mapping to Loyalty
+    & Retention Management.
+- tag: Members
+  spec_file: zinrelo-members-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.9
+  evidence: POST /v1/loyalty/users  createMember  Create a member; GET /v1/loyalty/users/{user_email}/redemptions;
+    GET /v1/loyalty/users/{user_email}/next_tier
+  reason: Operations enrol, retrieve, block and manage members of a loyalty programme including their
+    transactions, redemptions and tier progression. This is squarely loyalty programme administration
+    under Customer Relationship Management / Loyalty & Retention Management.
+- tag: Rewards
+  spec_file: zinrelo-rewards-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.85
+  evidence: GET /v2/loyalty/rewards  listRewards  List all rewards
+  reason: Catalogue of loyalty rewards offered to programme members; part of loyalty programme management.
+    Thin surface (single read) so slightly lower confidence on sub-capability specificity.
+- tag: Tiers
+  spec_file: zinrelo-tiers-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.85
+  evidence: GET /v1/loyalty/tiers  listTiers; GET /v1/loyalty/users/{user_email}/next_tier  getMemberNextTier
+  reason: Loyalty tier structure and a member's progression to the next tier — a loyalty programme construct,
+    mapping to Loyalty & Retention Management.
+- tag: Transactions
+  spec_file: zinrelo-transactions-api-openapi.yml
+  capability_id: BC-420.40
+  capability_id_l1: BC-420
+  capability_name: Loyalty & Retention Management
+  confidence: 0.8
+  evidence: POST /v1/loyalty/purchase  recordPurchase; POST /v1/loyalty/transaction/return  recordReturn;
+    GET /v1/loyalty/transactions
+  reason: Despite the generic 'Transactions' name, the paths are all /v1/loyalty/... and record purchases/returns
+    that drive loyalty point accrual — loyalty programme activity ledger, not financial accounting of
+    receivables.

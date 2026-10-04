@@ -247,6 +247,9 @@ apis:
   - type: APIReference
     url: https://help.zinrelo.com/reference/list-all-rewards
 common:
+- type: CapabilityMap
+  url: capabilities/zinrelo-capability-edges.yml
+  name: Zinrelo Business Capability Map
 - type: AgenticAccess
   url: agentic-access/zinrelo-agentic-access.yml
 - type: TrustCenter
