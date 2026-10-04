@@ -295,12 +295,16 @@ components:
             $ref: '#/components/schemas/Member'
         total_count:
           type: integer
-    StatusResponse:
+    MemberCreate:
       type: object
+      required:
+      - user_email
       properties:
-        success:
-          type: boolean
-        message:
+        user_email:
+          type: string
+        first_name:
+          type: string
+        last_name:
           type: string
     TransactionList:
       type: object
@@ -309,15 +313,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Transaction'
-        total_count:
-          type: integer
-    RedemptionList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Redemption'
         total_count:
           type: integer
     Member:
@@ -339,17 +334,6 @@ components:
           type: string
         member_since:
           type: string
-    MemberCreate:
-      type: object
-      required:
-      - user_email
-      properties:
-        user_email:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
     Error:
       type: object
       properties:
@@ -358,19 +342,6 @@ components:
         error_code:
           type: string
         message:
-          type: string
-    Redemption:
-      type: object
-      properties:
-        redemption_id:
-          type: string
-        user_email:
-          type: string
-        reward_id:
-          type: string
-        points_redeemed:
-          type: integer
-        status:
           type: string
     Transaction:
       type: object
@@ -393,14 +364,35 @@ components:
           type: string
         approved_date:
           type: string
-  parameters:
-    UserEmail:
-      name: user_email
-      in: path
-      required: true
-      description: The member's email address, used as the member identifier.
-      schema:
-        type: string
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    Redemption:
+      type: object
+      properties:
+        redemption_id:
+          type: string
+        user_email:
+          type: string
+        reward_id:
+          type: string
+        points_redeemed:
+          type: integer
+        status:
+          type: string
+    RedemptionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Redemption'
+        total_count:
+          type: integer
   responses:
     Unauthorized:
       description: Authentication failed - missing or invalid partner-id or api-key.
@@ -414,6 +406,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    UserEmail:
+      name: user_email
+      in: path
+      required: true
+      description: The member's email address, used as the member identifier.
+      schema:
+        type: string
   securitySchemes:
     partnerId:
       type: apiKey

@@ -96,33 +96,6 @@ components:
           type: integer
         reason:
           type: string
-    PurchaseRequest:
-      type: object
-      required:
-      - user_email
-      properties:
-        user_email:
-          type: string
-        order_id:
-          type: string
-        order_total:
-          type: number
-        products:
-          type: array
-          items:
-            type: object
-    AwardRequest:
-      type: object
-      required:
-      - user_email
-      - activity_id
-      properties:
-        user_email:
-          type: string
-        activity_id:
-          type: string
-        additional_data:
-          type: object
     Error:
       type: object
       properties:
@@ -153,6 +126,33 @@ components:
           type: string
         approved_date:
           type: string
+    AwardRequest:
+      type: object
+      required:
+      - user_email
+      - activity_id
+      properties:
+        user_email:
+          type: string
+        activity_id:
+          type: string
+        additional_data:
+          type: object
+    PurchaseRequest:
+      type: object
+      required:
+      - user_email
+      properties:
+        user_email:
+          type: string
+        order_id:
+          type: string
+        order_total:
+          type: number
+        products:
+          type: array
+          items:
+            type: object
   responses:
     Unauthorized:
       description: Authentication failed - missing or invalid partner-id or api-key.
