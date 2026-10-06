@@ -57,7 +57,7 @@ tags_raw:
 - SaaS
 - Loyalty & Incentives
 created: '2026-07-10'
-modified: '2026-07-10'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: zinrelo:zinrelo-events-api
@@ -247,6 +247,8 @@ apis:
   - type: APIReference
     url: https://help.zinrelo.com/reference/list-all-rewards
 common:
+- url: https://www.trueloyal.com/blog
+  type: Blog
 - type: CapabilityMap
   url: capabilities/zinrelo-capability-edges.yml
   name: Zinrelo Business Capability Map
