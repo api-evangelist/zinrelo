@@ -1,0 +1,99 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/zinrelo/integrations
+checked:
+- https://composio.dev/toolkits/zinrelo
+- https://monid.ai/tools/zinrelo
+- https://n8n.io/integrations/zinrelo/
+- https://zapier.com/apps/zinrelo/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: zinrelo
+  url: https://zapier.com/apps/zinrelo/integrations
+  external_url: https://zinrelo.com/
+  partner_tier: BRONZE
+  triggers:
+  - key: loyalty_member_enrolment
+    label: New Loyalty Member Enrolment
+  - key: points_awarded
+    label: Points Awarded
+  - key: points_deducted
+    label: Points Deducted
+  - key: points_expired
+    label: Points Expired
+  - key: points_redeemed
+    label: Points Redeemed
+  - key: tier_downgrade
+    label: Tier Downgrade
+  - key: tier_upgrade
+    label: Tier Upgrade
+  actions:
+  - key: award_points_for_non_purchase
+    label: Award Points for Non-Purchase Activity
+  - key: award_points_for_purchase
+    label: Award Points for Purchase
+  - key: block_loyalty_member
+    label: Block Loyalty Member
+  - key: create_loyalty_member
+    label: Create Loyalty Member
+  - key: deduct_points
+    label: Deduct Points
+  - key: deduct_points_for_returns
+    label: Deduct Points for Order Returns
+  - key: unsubscribe_loyalty_member
+    label: Unsubscribe Loyalty Member
+  - key: update_member_email
+    label: Update Loyalty Member Email
+  searches: []
+edges:
+- partner_name: Emarsys
+  partner: emarsys
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/zinrelo/integrations/emarsys
+  direction: third-party
+  category: Marketing
+  partner_url: https://www.emarsys.com/
+templates:
+- title: Log redeemed points in Google Sheets when new points are redeemed in Zinrelo
+  url: https://zapier.com/apps/google-sheets/integrations/zinrelo/1269713/log-redeemed-points-in-google-sheets-when-new-points-are-redeemed-in-zinrelo
+  apps:
+  - zinrelo
+  - google-sheets
+- title: Create Zinrelo points when new WPForms entries are submitted
+  url: https://zapier.com/apps/wpforms/integrations/zinrelo/1418111/create-zinrelo-points-when-new-wpforms-entries-are-submitted
+  apps:
+  - wpforms
+  - zinrelo
+- title: Award Zinrelo points for non-purchase activities from new Squarespace Forms form submissions
+  url: https://zapier.com/apps/squarespace-forms/integrations/zinrelo/1430069/award-zinrelo-points-for-non-purchase-activities-from-new-squarespace-forms-form-submissions
+  apps:
+  - squarespace-forms
+  - zinrelo
+- title: Award points in Zinrelo for new Formsite form results
+  url: https://zapier.com/apps/formsite/integrations/zinrelo/1435531/award-points-in-zinrelo-for-new-formsite-form-results
+  apps:
+  - formsite
+  - zinrelo
+- title: Process new GoCanvas submissions by awarding points for non-purchase activities in Zinrelo
+  url: https://zapier.com/apps/gocanvas/integrations/zinrelo/1442612/process-new-gocanvas-submissions-by-awarding-points-for-non-purchase-activities-in-zinrelo
+  apps:
+  - gocanvas
+  - zinrelo
+- title: Award Zinrelo points for new completed involve.me submissions
+  url: https://zapier.com/apps/involveme/integrations/zinrelo/1444497/award-zinrelo-points-for-new-completed-involveme-submissions
+  apps:
+  - involveme
+  - zinrelo
+- title: Award points in Zinrelo for new Qualtrics survey responses
+  url: https://zapier.com/apps/qualtrics/integrations/zinrelo/1446119/award-points-in-zinrelo-for-new-qualtrics-survey-responses
+  apps:
+  - qualtrics
+  - zinrelo
+template_total: 7
