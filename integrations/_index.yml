@@ -15,3 +15,15 @@
   source: edge
   status: pending-generation
   arazzo: null
+- slug: zinrelo-clover-own
+  label: Clover (own)
+  partner: clover
+  partner_name: Clover (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.clover.com/appmarket/apps/YZ390SJY3BBBJ
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

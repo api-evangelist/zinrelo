@@ -3,6 +3,7 @@ method: searched
 source:
 - https://zapier.com/apps/zinrelo/integrations
 checked:
+- clover/integrations/clover-integration-edges.yml
 - https://composio.dev/toolkits/zinrelo
 - https://monid.ai/tools/zinrelo
 - https://n8n.io/integrations/zinrelo/
@@ -60,6 +61,22 @@ edges:
   direction: third-party
   category: Marketing
   partner_url: https://www.emarsys.com/
+- partner_name: Clover (own)
+  partner: clover
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.clover.com/appmarket/apps/YZ390SJY3BBBJ
+  mirror_of: clover/integrations/clover-integration-edges.yml
+  apps:
+  - TrueLoyal
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
 templates:
 - title: Log redeemed points in Google Sheets when new points are redeemed in Zinrelo
   url: https://zapier.com/apps/google-sheets/integrations/zinrelo/1269713/log-redeemed-points-in-google-sheets-when-new-points-are-redeemed-in-zinrelo
