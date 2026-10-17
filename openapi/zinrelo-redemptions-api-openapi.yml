@@ -73,16 +73,24 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    UserEmail:
+      name: user_email
+      in: path
+      required: true
+      description: The member's email address, used as the member identifier.
+      schema:
+        type: string
   schemas:
-    Error:
+    RedemptionList:
       type: object
       properties:
-        success:
-          type: boolean
-        error_code:
-          type: string
-        message:
-          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Redemption'
+        total_count:
+          type: integer
     RedeemRequest:
       type: object
       required:
@@ -106,15 +114,15 @@ components:
           type: integer
         status:
           type: string
-    RedemptionList:
+    Error:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Redemption'
-        total_count:
-          type: integer
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
   responses:
     Unauthorized:
       description: Authentication failed - missing or invalid partner-id or api-key.
@@ -122,14 +130,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    UserEmail:
-      name: user_email
-      in: path
-      required: true
-      description: The member's email address, used as the member identifier.
-      schema:
-        type: string
   securitySchemes:
     partnerId:
       type: apiKey

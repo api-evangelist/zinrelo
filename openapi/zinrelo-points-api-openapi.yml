@@ -96,15 +96,6 @@ components:
           type: integer
         reason:
           type: string
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error_code:
-          type: string
-        message:
-          type: string
     Transaction:
       type: object
       properties:
@@ -153,6 +144,15 @@ components:
           type: array
           items:
             type: object
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
   responses:
     Unauthorized:
       description: Authentication failed - missing or invalid partner-id or api-key.

@@ -159,6 +159,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    UserEmail:
+      name: user_email
+      in: path
+      required: true
+      description: The member's email address, used as the member identifier.
+      schema:
+        type: string
   schemas:
     TransactionList:
       type: object
@@ -169,15 +177,6 @@ components:
             $ref: '#/components/schemas/Transaction'
         total_count:
           type: integer
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error_code:
-          type: string
-        message:
-          type: string
     Transaction:
       type: object
       properties:
@@ -214,6 +213,15 @@ components:
           type: array
           items:
             type: object
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error_code:
+          type: string
+        message:
+          type: string
   responses:
     Unauthorized:
       description: Authentication failed - missing or invalid partner-id or api-key.
@@ -221,14 +229,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    UserEmail:
-      name: user_email
-      in: path
-      required: true
-      description: The member's email address, used as the member identifier.
-      schema:
-        type: string
   securitySchemes:
     partnerId:
       type: apiKey

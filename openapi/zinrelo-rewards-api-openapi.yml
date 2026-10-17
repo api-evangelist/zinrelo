@@ -44,22 +44,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed - missing or invalid partner-id or api-key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Reward:
-      type: object
-      properties:
-        reward_id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        points_to_be_redeemed:
-          type: integer
-        rank:
-          type: integer
-        last_modified_date:
-          type: string
     RewardList:
       type: object
       properties:
@@ -78,13 +70,21 @@ components:
           type: string
         message:
           type: string
-  responses:
-    Unauthorized:
-      description: Authentication failed - missing or invalid partner-id or api-key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Reward:
+      type: object
+      properties:
+        reward_id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        points_to_be_redeemed:
+          type: integer
+        rank:
+          type: integer
+        last_modified_date:
+          type: string
   securitySchemes:
     partnerId:
       type: apiKey
