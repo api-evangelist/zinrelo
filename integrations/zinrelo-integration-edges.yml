@@ -1,4 +1,4 @@
-generated: '2026-10-12'
+generated: '2026-10-20'
 method: searched
 source:
 - https://zapier.com/apps/zinrelo/integrations
@@ -53,17 +53,6 @@ marketplace_apps:
     label: Update Loyalty Member Email
   searches: []
 edges:
-- partner_name: Emarsys
-  partner: emarsys
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/zinrelo/integrations/emarsys
-  direction: third-party
-  category: Marketing
-  partner_url: https://www.emarsys.com/
 - partner_name: Clover (own)
   partner: clover
   partner_match: mirror
@@ -135,6 +124,18 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
   first_seen: '2026-10-20'
+- partner_name: Emarsys
+  partner: emarsys
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/zinrelo/integrations/emarsys
+  direction: third-party
+  category: Marketing
+  partner_url: https://www.emarsys.com/
 templates:
 - title: Log redeemed points in Google Sheets when new points are redeemed in Zinrelo
   url: https://zapier.com/apps/google-sheets/integrations/zinrelo/1269713/log-redeemed-points-in-google-sheets-when-new-points-are-redeemed-in-zinrelo
