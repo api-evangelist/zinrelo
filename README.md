@@ -1,4 +1,4 @@
-# Zinrelo (zinrelo)
+# Zinrelo
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,89 +64,131 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Zinrelo is an enterprise SaaS loyalty and rewards platform that helps brands run holistic loyalty programs spanning transactional, social, advocacy, engagement, behavioral, and emotional loyalty across web, mobile, and in-store channels. Its documented REST Loyalty API lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards.
+Zinrelo is an enterprise SaaS loyalty and rewards platform that helps brands run holistic loyalty programs spanning transactional, social, advocacy, engagement, behavioral, and emotional loyalty across web, mobile, and in-store channels. Its documented REST Loyalty API lets you enroll and manage members, award and deduct points, record purchases and returns, list rewards, and redeem points for rewards. Every request is authenticated with a partner-id and an api-key sent as HTTP headers, both provisioned to a Zinrelo account. The API reference is public, but obtaining API credentials requires a Zinrelo account; pricing is quote-based via sales. Zinrelo is rebranding to TrueLoyal, and some documentation now lives under trueloyal.com domains.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/zinrelo/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/zinrelo/refs/heads/main/apis.yml)
+**Areas:** Loyalty · Rewards · Points · Customer Retention · E-Commerce · Software-as-a-Service · Loyalty & Incentives
 
-## Access Model
+## Zinrelo on APIs.io
 
-Zinrelo's API **reference documentation is public** and self-serve to read (both the classic v1 API reference at `zinrelo.github.io/slate` and the v2 loyalty / loyalty-storefront reference in the Zinrelo help center). However, **API access itself is account-gated**: every request is authenticated with a `partner-id` and an `api-key` that are provisioned to your Zinrelo account, and Zinrelo does not offer open, public, credit-card-free API keys. Pricing is quote-based through sales (a free trial and a Shopify app tier free up to 500 loyalty members also exist). In practice you must be a Zinrelo customer to obtain working credentials.
+Everything profiled for Zinrelo is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/zinrelo/](https://apis.io/providers/zinrelo/)** — or go straight to one of the APIs or properties below.
 
-**Rebrand note:** Zinrelo is rebranding to **TrueLoyal**. Some documentation now redirects to `help.trueloyal.com` and `www.trueloyal.com`, though the API host remains `api.zinrelo.com` and the `zinrelo.com` help URLs still resolve. The `zinrelo` folder slug and Zinrelo naming are retained here.
+### APIs (7)
 
-**Modeling note:** The endpoint paths, headers, and query parameters in this catalog are drawn from Zinrelo's public documentation and are accurate. Request and response body schemas in the OpenAPI are **honestly modeled** from the public docs and examples, since Zinrelo does not publish a machine-readable OpenAPI with full field-level schemas. Verify exact field names against the live reference before production use.
+- [Zinrelo Events API](https://apis.io/apis/zinrelo/zinrelo-events-api/) — Retrieve webhook event details by event ID.
+- [Zinrelo Members API](https://apis.io/apis/zinrelo/zinrelo-members-api/) — Enroll, retrieve, update, block, and manage loyalty program members.
+- [Zinrelo Points API](https://apis.io/apis/zinrelo/zinrelo-points-api/) — Award, deduct, and manage member point balances.
+- [Zinrelo Redemptions API](https://apis.io/apis/zinrelo/zinrelo-redemptions-api/) — Redeem points for rewards and list a member's redemptions.
+- [Zinrelo Rewards API](https://apis.io/apis/zinrelo/zinrelo-rewards-api/) — List and retrieve the rewards a program offers.
+- [Zinrelo Tiers API](https://apis.io/apis/zinrelo/zinrelo-tiers-api/) — Retrieve loyalty tier configuration and a member's next tier.
+- [Zinrelo Transactions API](https://apis.io/apis/zinrelo/zinrelo-transactions-api/) — Record purchases and returns and list loyalty transactions.
 
-## Tags
+### Published properties
 
-- Loyalty
-- Rewards
-- Points
-- Customer Retention
-- Ecommerce
-- SaaS
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
+#### Agentic access (1)
 
-- **Created:** 2026-07-10
-- **Modified:** 2026-07-10
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## APIs
+- [Zinrelo Agentic Access](https://apis.io/agentic-access/zinrelo/zinrelo-agentic-access/)
 
-### Zinrelo Members API
+#### Collections (8)
 
-Enroll, retrieve, list, update, block, and unsubscribe loyalty program members, and read a member's point balances, transactions, redemptions, eligible activities, and next-tier status. Members are identified by email.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://help.zinrelo.com/reference/introduction](https://help.zinrelo.com/reference/introduction)
-- **Base URL:** `https://api.zinrelo.com`
+- [Zinrelo Loyalty API](https://apis.io/collections/zinrelo/open-zinrelo/)
+- [Zinrelo Loyalty Events API](https://apis.io/collections/zinrelo/open-zinrelo-events-api/)
+- [Zinrelo Loyalty Events Members API](https://apis.io/collections/zinrelo/open-zinrelo-members-api/)
+- [Zinrelo Loyalty Events Points API](https://apis.io/collections/zinrelo/open-zinrelo-points-api/)
+- [Zinrelo Loyalty Events Redemptions API](https://apis.io/collections/zinrelo/open-zinrelo-redemptions-api/)
+- [Zinrelo Loyalty Events Rewards API](https://apis.io/collections/zinrelo/open-zinrelo-rewards-api/)
+- [Zinrelo Loyalty Events Tiers API](https://apis.io/collections/zinrelo/open-zinrelo-tiers-api/)
+- [Zinrelo Loyalty Events Transactions API](https://apis.io/collections/zinrelo/open-zinrelo-transactions-api/)
 
-### Zinrelo Points API
+#### Security (3)
 
-Award points to a member for a completed activity (points determined by the activity configuration in the Zinrelo admin console) and deduct points from a member's account. Powers the earning side of a loyalty program.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://help.zinrelo.com/reference/perform-activity-api](https://help.zinrelo.com/reference/perform-activity-api)
-- **Base URL:** `https://api.zinrelo.com`
+- [Zinrelo Authentication](https://apis.io/security/zinrelo/zinrelo-authentication/)
+- [Zinrelo Domain Security](https://apis.io/security/zinrelo/zinrelo-domain-security/)
+- [Zinrelo Trust Center](https://apis.io/security/zinrelo/zinrelo-trust-center/)
 
-### Zinrelo Transactions API
+#### Plans and pricing (1)
 
-Record purchases (awarding points and storing order and product data) and returns (deducting previously awarded points), and list program-wide or member-scoped transactions with pagination and date and status filters. The v2 loyalty-storefront transactions endpoint returns the authenticated member's transactions.
+Published plans, tiers and prices.
 
-- **Human URL:** [https://help.zinrelo.com/reference/list-members-transaction-api](https://help.zinrelo.com/reference/list-members-transaction-api)
-- **Base URL:** `https://api.zinrelo.com`
+- [Zinrelo Plans Pricing](https://apis.io/plans/zinrelo/zinrelo-plans-pricing/)
 
-### Zinrelo Rewards API
+#### Rate limits (1)
 
-List all rewards a program offers, sorted by last modified date by default and filterable and sortable by rank and points to be redeemed. This is the catalog side of the loyalty program that members redeem points against.
+Published request limits.
 
-- **Human URL:** [https://help.zinrelo.com/reference/list-all-rewards](https://help.zinrelo.com/reference/list-all-rewards)
-- **Base URL:** `https://api.zinrelo.com`
+- [Zinrelo Rate Limits](https://apis.io/rate-limits/zinrelo/zinrelo-rate-limits/)
 
-### Zinrelo Redemptions API
+#### FinOps (1)
 
-Redeem a member's points for a reward and list the redemption options configured for the program or available to a specific member. Powers the spending side of a loyalty program.
+What the API costs to run, by operation.
 
-- **Human URL:** [https://help.zinrelo.com/reference/introduction](https://help.zinrelo.com/reference/introduction)
-- **Base URL:** `https://api.zinrelo.com`
+- [Zinrelo Finops](https://apis.io/finops/zinrelo/zinrelo-finops/)
 
-## Authentication
+## Where to find this API
 
-All API requests must include two HTTP headers:
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- `partner-id` — your Zinrelo Partner ID
-- `api-key` — your Zinrelo API key
-
-Both are provisioned to your Zinrelo account.
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/zinrelo)
 - [Website](https://www.zinrelo.com)
 - [Documentation](https://help.zinrelo.com/reference/introduction)
-- [API Reference](https://zinrelo.github.io/slate/)
-- [Plans](plans/zinrelo-plans-pricing.yml)
-- [Rate Limits](rate-limits/zinrelo-rate-limits.yml)
-- [Fin Ops](finops/zinrelo-finops.yml)
+- [API reference](https://zinrelo.github.io/slate/)
+- [Blog](https://www.trueloyal.com/blog)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 28.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 50.7 |
+| Contract governance | 0.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 27.4 |
+| Access clarity | 15.8 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/zinrelo/](https://apis.io/providers/zinrelo/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Zinrelo: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/zinrelo/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
